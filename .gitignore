@@ -1,0 +1,36 @@
+# R
+.Rhistory
+.Rdata
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Large model files (track with Git LFS or exclude)
+outputs/models/*.rds
+!outputs/models/standardization_params.rds
+!outputs/models/accumulation_params.rds
+!outputs/models/fragility_parameters.rds
+!outputs/models/fragility_parameters_brms.rds
+
+# Temporary files
+*.log
+*.tmp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Data files (large)
+datafiles/*.gpkg
+datafiles/*.shp
+datafiles/*.dbf
+datafiles/*.shx
+datafiles/*.prj
+
+# Keep CSV data
+!datafiles/*.csv

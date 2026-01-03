@@ -1,0 +1,2103 @@
+Empirical Equations for the Prediction of
+Peak Ground Velocity due to Induced
+Earthquakes in the Groningen Gas Field –
+October 2021
+
+Julian J Bommer, Peter J Stafford & Michail Ntinalexis
+
+Datum
+
+October 2021
+
+Editors
+
+Jan van Elk & Jeroen Uilenreef
+
+General Introduction
+The hazard from induced earthquakes is primarily presented by the ground motion to which buildings and
+people are subjected. The prediction of ground motion, resulting from the earthquakes in the Groningen
+area induced by the production of gas, is critical for the assessment and prognosis of building damage and
+personal risk.
+The research into the development of the ground motion prediction methodology for the Groningen area
+started in 2012 and continued as more ground motion data from Groningen earthquakes is collected. The
+prime goal of these studies has been the development of a ground motion model for risk assessment. This
+means the focus has primarily been on the prediction of ground acceleration for larger events,
+extrapolating from the currently available data obtained from earthquakes with magnitude below M=3.6
+to earthquakes with magnitude in the range from M=4 to M=5 and up to extreme of the Mmax–distribution
+(Ref. 1). The development of these Ground Motion Prediction Models for the assessment of risk has been
+documented in several reports (Ref. 2, 3, 4, 5, 6, 12 and 13). The GMM model used in the latest hazard
+and risk assessment for gas-year 2021/2022 is GMM version 6 (Ref. 12). The latest GMM model is GMM
+version 7, which will be used in future hazard and risk assessments.
+Additionally, a Ground Motion prediction methodology was developed for smaller earthquakes within the
+range of current experience. This empirical methodology was developed for operational use within the
+context of building damage. The Empirical Ground Motion Model developed in 2016 aimed to accurately
+predict ground motion for earthquakes in the same range as the historical data base, primarily from M=2.5
+to M=3.6 (Ref. 9). In addition to the peak ground acceleration this methodology also covers peak ground
+velocity and Vtop. These last two metrics of ground motion are especially relevant for building damage and
+comparison with the Guidelines of the SBR (Stichting Bouw Research) (Ref. 7 and 8).
+During 2017, the requirement for prediction of ground motions for earthquakes smaller than M=2.5 was
+identified. The empirical methodology was therefore extended to cover earthquakes with magnitude in
+the range from M=1.8 to M=3.6 (Ref. 10). In 2019 the Empirical Ground Motion Model (Ref. 11) was
+updated to include the records obtained during the earthquakes in 2018, most notably the Zeerijp
+earthquake (of 8th January 2018) and the Garsthuizen earthquake (13th April 2018), and the recalibration
+of the accelerometers located at the G-stations of the KNMI seismic monitoring network.
+
+References:
+1.
+Report on Mmax Expert Workshop, Mmax panel chairman Kevin Coppersmith, June 2016
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+7.
+8.
+9.
+
+10.
+
+11.
+12.
+
+13.
+
+Technical Addendum to the Winningsplan Groningen 2013; Subsidence, Induced Earthquakes and Seismic
+Hazard Analysis in the Groningen Field, Nederlandse Aardolie Maatschappij BV (Jan van Elk and Dirk Doornhof,
+eds), November 2013.
+Development of Version 1 GMPEs for Response Spectral Accelerations and for Strong-Motion Durations,
+Julian J Bommer, Peter J Stafford, Benjamin Edwards, Michail Ntinalexis, Bernard Dost and Dirk Kraaijpoel,
+March 2015.
+Development of Version 2 GMPEs for Response Spectral Accelerations and Significant Durations for Induced
+Earthquakes in the Groningen field, Julian J Bommer, Bernard Dost, Benjamin Edwards, Adrian RodriguezMarek, Pauline P Kruiver, Piet Meijers, Michail Ntinalexis & Peter J Stafford, October 2015
+V4 Ground-motion Model (GMM) for Response Spectral Accelerations, Peak Ground Velocity and Significant
+Duration in the Groningen field, Julian Bommer, Bernard Dost, Benjamin Edwards, Pauline Kruiver, Pier
+Meijers, Michail Ntinalexis, Adrian Rodriguez-Marek, Elmer Ruigrok, Jesper Spetzler and Peter Stafford,
+Independent Consultants, Deltares and KNMI, June 2017 with Parameter files - V4 Ground-Motion Model
+(GMM) for Response Spectral Accelerations, Peak Ground Velocity, and Significant Durations in the Groningen
+Field, Supplement to V4 GMM, Julian Bommer and Peter Stafford, Independent Consultants, June 2017
+V5 Ground-Motion Model for the Groningen Field, J.J. Bommer, B. Edwards, P.P. Kruiver, A. Rodriguez-Marek,
+P.J. Stafford, B. Dost, M. Ntinalexis, E. Ruigrok, J. Spetzler, 30th October 2017.
+Meet- en beoordelingsrichtlijn: Trillingen - Deel B Hinder voor personen, Stichting Bouw Research, 2006.
+Meet- en beoordelingsrichtlijn: Trillingen - Deel A Schade aan gebouwen, Stichting Bouw Research, 2010.
+Empirical Ground-Motion Prediction Equations for Peak Ground Velocity from Small-Magnitude Earthquakes
+in the Groningen Field Using Multiple Definitions of the Horizontal Component of Motion, Julian J Bommer,
+Peter J Stafford & Michail Ntinalexis, November 2016
+Empirical Ground-Motion Prediction Equations for Peak Ground Velocity from Small-Magnitude Earthquakes
+in the Groningen Field Using Multiple Definitions of the Horizontal Component of Motion, Updated Model for
+Application to Smaller Earthquakes, Julian J Bommer, Peter J Stafford & Michail Ntinalexis, November 2017
+Updated Empirical GMPEs for PGV from Groningen Earthquakes – March 2019, Julian J Bommer, Peter J
+Stafford & Michail Ntinalexis, March 2019
+V6 Ground-Motion Model (GMM) for Induced Seismicity in the Groningen Field - with Assurance Letter, Julian
+J Bommer, Benjamin Edwards, Pauline P Kruiver, Adrian Rodriguez-Marek, Peter J Stafford, Bernard Dost,
+Michail Ntinalexis, Elmer Ruigrok and Jesper Spetzler, December 2019
+V7 Ground-Motion Model for Induced Seismicity in the Groningen Gas Field, Julian J Bommer, Benjamin
+Edwards , Pauline P Kruiver, Adrian Rodriguez-Marek, Peter J Stafford, Michail Ntinalexis, Elmer Ruigrok, and
+Bernard Dost, 10 October 2021
+
+These reports are also available at the study reports page of the website www.namplatform.nl.
+
+Title
+
+Autor(s)
+Organisation
+Place in the Study
+and
+Data
+Acquisition Plan
+
+Empirical Equations for the Prediction of Peak Ground Date
+Velocity due to Induced Earthquakes in the Groningen Gas Initiator
+Field – October 2021
+Julian J Bommer, Peter J Stafford & Michail Ntinalexis
+Editors
+
+October 2021
+NAM
+
+Jan van Elk &
+Jeroen Uilenreef
+Organisation NAM
+
+Researchers primarily from Imperial College, London.
+Study Theme: Ground Motion Prediction
+Comment:
+The hazard from induced earthquakes is primarily presented by the ground motion to
+which buildings and people are subjected. The prediction of ground motion, resulting
+from the earthquakes in the Groningen area induced by the production of gas, is critical
+for the assessment and prognosis of building damage and personal risk.
+The research into the development of the ground motion prediction methodology for the
+Groningen area started in 2012 and continued as more ground motion data from
+Groningen earthquakes is collected. The prime goal of these studies has been the
+development of a ground motion model for risk assessment. This means the focus has
+primarily been on the prediction of ground acceleration for larger events, extrapolating
+from the currently available data obtained from earthquakes with magnitude below
+M=3.6 to earthquakes with magnitude in the range from M=4 to M=5 and up to extreme
+of the Mmax–distribution. The development of these Ground Motion Prediction Models
+for the assessment of risk has been documented in several reports. The GMM model used
+in the latest hazard and risk assessment for gas-year 2021/2022 is GMM version 6. The
+latest GMM model is GMM version 7, which will be used in future hazard and risk
+assessments.
+Additionally, a Ground Motion prediction methodology was developed for smaller
+earthquakes within the range of current experience. This empirical methodology was
+developed for operational use within the context of building damage. The Empirical
+Ground Motion Model developed in 2016 aimed to accurately predict ground motion for
+earthquakes in the same range as the historical data base, primarily from M=2.5 to
+M=3.6. In addition to the peak ground acceleration this methodology also covers peak
+ground velocity and Vtop. These last two metrics of ground motion are especially relevant
+for building damage and comparison with the Guidelines of the SBR (Stichting Bouw
+Research).
+
+During 2017, the requirement for prediction of ground motions for earthquakes smaller
+than M=2.5 was identified. The empirical methodology was therefore extended to cover
+earthquakes with magnitude in the range from M=1.8 to M=3.6. In 2019 the Empirical
+Ground Motion Model was updated to include the records obtained during the
+earthquakes in 2018, most notably the Zeerijp earthquake (of 8th January 2018) and
+the Garsthuizen earthquake (13th April 2018), and the recalibration of the
+accelerometers located at the G-stations of the KNMI seismic monitoring network.
+Directliy linked (1) Hazard Assessment.
+research
+(2) Building Damage (DS1).
+Used data
+Accelerograms from the accelerometers placed in the Groningen field.
+Description of the shallow geology of Groningen.
+Associated
+Imperial College (London).
+organisation
+Assurance
+Assurance Team for the Ground Motion Prediction Model. Assurance Letter is included in report
+“V7 Ground-Motion Model for Induced Seismicity in the Groningen Gas Field, Julian J Bommer,
+Benjamin Edwards , Pauline P Kruiver, Adrian Rodriguez-Marek, Peter J Stafford, Michail
+Ntinalexis, Elmer Ruigrok, and Bernard Dost, 10 October 2021”
+
+A Report for NAM
+
+Empirical Equations for the Prediction of
+Peak Ground Velocity due to Induced
+Earthquakes in the Groningen Gas Field
+
+Julian J Bommer, Peter J Stafford & Michail Ntinalexis
+
+10 October 2021
+
+Table of Contents
+1. Introduction
+
+2
+
+2. Ground-Motion Database
+
+6
+
+2.1. PGV values
+2.2. Data selection and record processing
+2.3. Database statistics
+
+6
+7
+11
+
+3. Regressions and New Models
+
+15
+
+3.1. Functional form for GMPEs
+3.2. Results of regression analyses
+3.3. Regressions accounting for instrument-station type
+
+15
+17
+20
+
+4. Comparison with Previous PGV Models
+
+26
+
+4.1. Comparison of median predictions
+4.2. Comparison of aleatory variability
+
+26
+27
+
+5. Conclusions and Recommendations
+
+29
+
+6. References
+
+30
+
+Appendix: Extended VS30 map
+
+32
+
+1
+
+1. Introduction
+Since 2013, work has been undertaken, through a series of iterative steps, to develop a ground-motion model
+(GMM) for the prediction of ground motions due to induced earthquakes in the Groningen gas field (Bommer
+et al., 2016a). The primary purpose of these GMMs was to provide input into seismic risk calculations both to
+determine the threat posed by the induced seismicity and to explore the efficacy of alternative risk mitigation
+strategies (van Elk et al., 2019). To this end, the GMMs provide predictions of response spectral accelerations,
+the parameter chosen to characterise the fragility functions for buildings in the Groningen exposure database
+(Crowley et al., 2017; Crowley et al., 2019). The GMMs have been derived using ground-motion recordings
+obtained from the accelerograph networks operating in and around the gas field (Dost et al., 2017; Ntinalexis
+et al., 2019), from earthquakes with local magnitude, ML, ranging from 2.5 to 3.6. A major challenge in the
+development of the GMMs has been the requirement to provide predictions for the earthquakes of much larger
+magnitude considered in the risk calculations. The current model for the largest possible earthquake, defined
+by Mmax, in the Groningen field, developed by an expert panel assembled expressly to address this controversial
+issue, has a bounding value at about M 7.25 (Bommer & van Elk, 2016); in passing we note for the magnitudes
+≥ 2.5, ML and M are found to be equivalent, on average, for Groningen seismicity (Dost et al., 2018; Dost et al.,
+2019). Due to the very large extrapolation beyond the available data from the Groningen field, key features of
+the GMM are a logic-tree structure to capture the increase in epistemic uncertainty with increasing magnitude
+(Bommer et al., 2017a) and the modelling of non-linear site response under the shaking caused by potential
+larger-magnitude earthquakes (Rodriguez-Marek et al., 2017).
+In 2016, NAM also requested the parallel development of a separate model for the prediction of peak ground
+velocity (PGV), applicable only in the magnitude range of the observed seismicity in the field. The specific focus
+on PGV is because this parameter is frequently used to define tolerable levels of vibrations of anthropogenic
+origin, both in terms of human discomfort and damage to buildings (e.g., Bommer & Alarcón, 2006). More
+specifically, PGV is the basis of official Dutch guidelines for assessing the impact of vibration on buildings, as
+presented in the document Building Damage: Measurement and Assessment (SBR, 2002). Since the PGV
+prediction model was not required to be suitable for extrapolation beyond the range of earthquake magnitudes
+observed in the Groningen field, it was considered sufficient to develop an empirical ground-motion prediction
+equation (GMPE), using the available data and a suitable functional form. Moreover, it was considered
+preferable to derive such an empirical GMPE for application within the range of the magnitudes for which
+ground-motion recording are available, rather than to use the GMMs, which in earlier versions included models
+for PGV, since the focus on the latter was prediction of motions from larger magnitude earthquakes that drive
+the estimates of hazard and risk rather than reproducing the observed motions from the small-magnitude
+events observed in the field.
+At this point it is probably useful to also explain the terminology we are using in this report. The term GMPE
+was introduced to replace the widely-used descriptor ‘attenuation relations’ or ‘attenuation equations’ (or even
+the clearly inappropriate ‘attenuation laws’) since the equations describe both the attenuation of motions with
+distance and their scaling with amplitude and site classification. More recently, there has been a transition to
+referring to these predictive equations as GMMs. In the context of the Groningen hazard and risk modelling,
+we have opted to continue to refer to models that are simple parametric equations for predicting groundmotion amplitudes as GMPEs, but to refer to the predictive models that provide input to the hazard and risk
+calculations as GMMs. The latter combine GMPEs for the accelerations at a buried rock horizon (base of the
+North Sea group located at about 800 m depth) and site amplification factors, defined for different zones across
+the study area (based initially on the geological zonation proposed by Kruiver et al., 2017), to model the effect
+of the overlying soil layers. Therefore, in this report we continue to use the term GMPE to refer to the
+parametric equations for the prediction of PGV.
+
+2
+
+Using the database of 178 recordings from 22 earthquakes of ML in the range 2.5 to 3.6, an empirical GMPE was
+developed as a function of magnitude and epicentral distance (Bommer et al., 2016b); this distance metric was
+used because all Groningen earthquakes are assumed to occur at a nominal depth of 3 km (Spetzler & Dost,
+2017). Site conditions would also usually be expected to exert an influence on the amplitude of PGV. The
+parameter generally used in modern GMPEs to characterise site conditions from the perspective of dynamic
+response and amplification of ground shaking is VS30, which is the time-averaged (i.e., harmonic mean) shearwave velocity over the uppermost 30 m. This parameter was included in the regressions and coefficients were
+determined that reflected the expected behaviour: higher values of PGV on sites with lower V S30, or in other
+words greater amplification of PGV on softer sites. However, the influence of this parameter—over the range
+of VS30 values encountered in the Groningen field—was found to be very weak in comparison with the influence
+of magnitude and distance (Figure 1.1). This led to the decision to exclude VS30 from the model since the GMPEs
+are much easier to apply, for NAM’s purposes, if the site conditions do not need to be included.
+
+Figure 1.1. Median predictions of PGV for three different values of VS30 from 2016 empirical GMPE
+
+An update of the PGV model was requested in 2017 to include earthquakes of magnitude smaller than ML 2.5,
+since NAM was also dealing with claims associated with such smaller events (the lower limit of 2.5 was set for
+the main GMM precisely because it was assumed that smaller earthquakes would not cause damage). Rather
+than simply extrapolate the 2017 GMPEs to magnitudes considerably smaller than the lower limit of the
+database used in their derivation, it was deemed necessary to derive new equations with an expanded
+database. Moreover, in the intervening period after publication of the 2017 GMPEs, another earthquake of ML
+above 2.5 had occurred, the ML 2.6 Slochteren event of 27 May 2017. The significance of this earthquake is that
+it was the first major event to be recorded by the G-network surface accelerographs (see Section 2.1). Prior to
+this event, only the ML 3.1 Hellum earthquake of September 2015 had generated a large number of G-station
+3
+
+recordings, yielding a total of 42 records, whereas the Slochteren earthquake, despite its smaller magnitude,
+contributed 71 new recordings to the database (Bommer et al., 2017b). Additionally, recordings were included
+from 24 earthquakes with magnitudes in the range 1.8 to 2.4, bringing the total database to 1,104 records from
+47 earthquakes. The resulting equations were not very different from the original models derived a year earlier
+(Figure 1.2).
+
+Figure 1.2. Comparison of median predictions of PGV from 2016 (dashed) and 2017 (solid) empirical GMPEs; it
+should be noted that the predictions for magnitude ML 4.0 represent an extrapolation of the equations
+beyond their strict range of applicability and indeed beyond the magnitude range for which they have been
+required to date.
+
+A third version of the empirical GMPEs was produced in 2019 (Bommer et al., 2019). The motivation for this
+modification was the discovery of a calibration error that occurred in the installation of the surface
+accelerographs of the G-network stations (Dost et al., 2019; Ntinalexis et al., 2019); the recording networks in
+the Groningen field are discussed in Section 2.2. Investigations revealed that the instruments had been installed
+such that they were recording half of the correct amplitude. Since several G0-station (surface accelerographs
+of the G-network) recordings had been included in the derivation of the PGV models, the GMPEs needed to be
+updated with the corrected amplitudes. Moreover, by the time the instrument calibration issue was identified,
+a further eight new earthquakes had occurred, two of ML ≥ 2.5 (including the ML 3.4 Zeerijp event of January
+2018), all of which had generated 80 or more records each. The database used to derive the 2019 GMPEs
+included 1,724 recordings from 55 earthquakes. The changes in the median predictions from the new model
+with respect to the 2017 GMPEs were modest and mostly manifested as small increases in amplitude at
+distances > 10 km (Figure 1.3). We note that when the 2019 GMPEs were derived, the dependence on VS30 was
+not investigated afresh since there was no new site characterisation data available at the time. It was considered
+that the finding of a modest dependence, as found in 2017, would still hold, and therefore it would be most
+convenient to continue applying a GMPE that did not include a term in VS30.
+4
+
+Figure 1.3. Comparison of median predictions of PGV from 2017 (dashed) and 2019 (solid) empirical GMPEs;
+as before, the curve for ML 4.0 represents an extrapolation of the models beyond their strict range of
+applicability.
+
+The motivation for updating the GMPEs for PGV at the current time arises from several factors. The updated
+equations are being issued at the same time as work is underway to complete the V7 GMM, which will be the
+final iteration of the ground-motion model development. It was therefore considered appropriate to update
+the empirical GMPEs for PGV as another contribution to the legacy from this work. In additional, several new
+earthquakes have occurred since the 2019 GMPE was derived and there is consequently a greatly expanded
+database available. Another important development is that in situ VS measurements (using seismic CPT) have
+now been carried out at most of the G-network stations, so that now there are measured VS30 values available
+for the majority of the recordings. Previously, VS measurements were only available for the stations of the much
+smaller B-network (Noorlandt et al., 2018), and for the G-network stations all VS30 values were obtained from
+VS profiles inferred from a geological model (Kruiver et al., 2017). Other considerations include improved record
+processing procedures that have been developed as part of the GMM work (Edwards & Ntinalexis, 2021) and
+the observations that have been made regarding a general trend for lower short-period amplitudes of response
+spectra of recordings from B-network stations compared to those from G-network stations. The new models
+presented in this report have been derived taking account of all these new developments. This report is written
+to be a complete, standalone summary of the model development, not requiring the reader to refer to previous
+reports on the PGV model development.
+Another important feature of the PGV GMPEs presented herein is that for the first time these empirical models
+have been included within the review by the panel of international experts (chaired by Jonathan Stewart and
+including Norm Abrahamson, Gail Atkinson, Hilmar Bungum, John Douglas, Ivan Wong and Bob Youngs)
+appointed to review the GMM. The outcome of their review is recorded in the final section of this report. In
+their closure letter dated 9th October 2021, which is included in full in the V7 GMM report, the panel stated that
+“we consider the PGV model to provide a suitable basis for estimating PGV for earthquakes within the model’s
+recommended magnitude and distance range.”
+
+5
+
+2. Ground-Motion Database
+In this chapter, the database compiled for the derivation of the new GMPEs for PGV is described, together with
+the definitions of the horizontal PGV based on different treatments of the two horizontal components from
+each accelerogram.
+
+2.1. PGV values
+There are several options for obtaining a single value of acceleration or velocity from the two orthogonal
+horizontal components of an accelerogram (e.g., Beyer & Bommer, 2006). For the main GMM, the standard
+definition of the geometric mean component was adopted for the hazard calculations, with an adjustment to
+the arbitrary component for the risk calculations, the difference between the two definitions being that the
+standard deviation of the latter includes the component-to-component variability (Baker & Cornell, 2006). A
+magnitude- and distance-dependent model for the component-to-component variability, reflecting the strong
+polarisation observed in many near-source recordings of Groningen earthquakes, has been derived (Stafford et
+al., 2019). The SBR (2002) standards for tolerable vibration levels use a peak velocity parameter referred to as
+VTOP, which is defined as the ‘maximum’ value of PGV. Therefore, for NAM’s purposes and for the consistency
+with the VTOP parameter used in the relevant guidelines, the ‘maximum’ value of PGV is required. Since there is
+some uncertainty as to exactly which ‘maximum’ corresponds to the VTOP definition, equations have been
+derived for two alternative definitions of the largest component; for completeness an equation for the
+geometric mean component is also included.
+If we label the PGV values on the two horizontal components of each recording as PGVNS and PGVEW, the
+geometric mean value of PGV is given by:
+𝑃𝐺𝑉𝐺𝑀 = √𝑃𝐺𝑉𝑁𝑆 𝑃𝐺𝑉𝐸𝑊 = 𝑒𝑥𝑝 [
+
+ln(𝑃𝐺𝑉𝑁𝑆 )+ln⁡(𝑃𝐺𝑉𝐸𝑊 )
+]
+2
+
+(2.1)
+
+The larger component, which in many early ground-motion studies was referred to as the maximum
+component, is simply the larger of the two as-recorded values of PGV:
+𝑃𝐺𝑉𝑙𝑎𝑟𝑔𝑒𝑟 = 𝑚𝑎𝑥[𝑃𝐺𝑉𝑁𝑆 , 𝑃𝐺𝑉𝐸𝑊 ]
+
+(2.2)
+
+Both of the two preceding definitions are constrained by the orientation of the recording instrument, which is
+unlikely to be perfectly aligned with the direction of the strongest shaking. In order to find the direction of
+maximum motion, the two components can be rotated through small angles (e.g., 1°) to find the rotated
+component with the largest peak on the velocity trace (e.g., Watson-Lamprey & Boore, 2007). For a single
+parameter, such as PGV, this can also be found from the following operation on the two orthogonal velocity
+traces, VNS and VEW (instruments in the KNMI networks are installed aligned with the cardinal points):
+𝑃𝐺𝑉𝑅𝑜𝑡𝑀𝑎𝑥 = 𝑚𝑎𝑥[√𝑉𝑁𝑆 (𝑡)2 + 𝑉𝐸𝑊 (𝑡)2 ]
+
+(2.3)
+
+This horizontal component definition is more usually referred to as RotD100 (Boore, 2010) but the terminology
+used here conveys more clearly what the definition represents and it has become familiar for stakeholders in
+Groningen hence it would potentially create confusion to now change the name for this component definition.
+Another definition of the maximum horizontal PGV is the Pythagorean of the two individual PGV values:
+6
+
+2
+2
+𝑃𝐺𝑉𝑃𝑦𝑡ℎ = √𝑃𝐺𝑉𝑁𝑆
++ 𝑃𝐺𝑉𝐸𝑊
+
+(2.4)
+
+This is effectively the same as the maximum rotated component in the case that the peaks on the two asrecorded components occur at exactly the same time. In all other cases, it is a conservative overestimate of the
+maximum motion. This definition of the maximum horizontal PGV is not included in the derivation of the
+GMPEs, which are developed only for the other three definitions.
+Values of PGV obtained with the three definitions can differ significantly, depending largely on the degree of
+polarisation of the horizontal components: 𝑃𝐺𝑉𝐺𝑀 ≤ 𝑃𝐺𝑉𝑙𝑎𝑟𝑔𝑒𝑟 ≤ 𝑃𝐺𝑉𝑀𝑎𝑥𝑅𝑜𝑡 . Figure 2.1 shows the values of
+horizontal PGV obtained with the three definitions, ranked by the value of the larger component definition. The
+degree of scatter (noting that the y-axis is logarithmic) reflects how different can be the PGV values obtained
+from each of the definitions, although it may also be noted that it is the geometric mean definition that
+produces the largest deviations. The more striking observation may be that just 20 records have a larger
+component of PGV ≥ 1 cm/s, and for 300 records, the larger horizontal PGV value is greater than or equal to 1
+mm/s; for well over 80% of the database, the maximum recorded PGV is below 1 mm/s.
+
+Figure 2.1. PGV values for each record ranked by PGVlarger
+
+2.2. Data selection and record processing
+To compile the database for the derivation of the updated empirical PGV models, the main criterion applied
+was that the recorded earthquakes would have a magnitude of ML 1.8 or larger. Records were retrieved from
+both the networks of surface accelerographs operated by KNMI, namely the B-network and the G-network. The
+majority of stations from these networks now have locally measured VS profiles but records were included from
+7
+
+all of the stations, including those without a locally measured profile. A flag was included in the database to
+indicate whether the VS30 value for each station is from a measured profile or inferred from the GeoTop model.
+The surface accelerographs from the G-network are designated as G0 stations (G1-G4 referring to the borehole
+geophones at 50 m intervals), but a second designation of GS is used to refer to a small group of stations to the
+west side of the Groningen field where there are only surface accelerographs. Some of the GS stations lie
+outside the boundary of the site response zonation (the gas field plus a 5 km buffer onshore) and therefore
+have no VS30 measurement or GeoTop-inferred estimate at all. Different designations are also given to the
+current B-network stations (B_new) and the stations prior to the instrument upgrade—from GeoSig
+accelerographs to Kinemetrics Episensors, which also comprise the G-network stations—following the ML 3.6
+Huizinge earthquake of August 2012 (Figure 2.2). The new instruments were housed within the same structures
+as the older accelerographs, although in some cases at a slightly different location.
+
+Figure 2.2. Locations of B-network stations with symbol colour indicating the year of the upgrade
+(Dost et al., 2017)
+
+Another network that could provide additional recordings is the network of GeoSig accelerographs installed in
+private homes and a few public buildings throughout the region (Figure 2.3). This network, which has now been
+discontinued, was installed and operated by TNO. The instruments were all installed on brackets attached to
+walls at heights varying from a few to several tens of centimetres, which in many cases leads to the records
+being contaminated by the building response. However, shake table tests on full-scale models of Groningen
+houses were used to replicate the unusual installation together with ground-level instruments, and the results
+showed that response spectral ordinates at periods longer than 0.1 second, and PGV values as well, could be
+considered as reliable representations of the ground shaking (Ntinalexis et al., 2019). However, there are two
+reasons for not including the household network records in the database, the first being that there are no
+8
+
+measured VS profiles at these stations. Secondly, and perhaps more importantly, the use of these recordings
+would violate the principle adopted in all the Groningen ground-motion work that our data will be freely shared
+and that our models should be reproducible by others. The coordinates of the private houses where the
+majority of the instruments were located cannot be revealed because of privacy laws hence including these
+data would be incompatible with the policy of openness. The TNO recordings can, however, be used for
+checking the performance on both the PGV GMPEs and the GMMs for the risk model (except at periods of 0.1
+s or shorter), but such analyses are not presented in this report.
+
+Figure 2.3. Map of the Groningen field showing locations of the stations of household network together with
+those of the B- and G-networks (Ntinalexis et al., 2019)
+
+A small number of recordings (22) were removed because of clear malfunctions of the recording instruments,
+which affected primarily stations BLOP, G530, G680 andG050. The remaining accelerograms from the B- and Gnetwork stations, numbering almost 3,400, were processed following the same procedures that have been
+developed for the V7 GMM database, which are somewhat more rigorous than the procedures applied
+previously—as the Groningen ground-motion database has grown in size, it has become possible to be more
+demanding with regards to record quality. The processing is based on comparison of the Fourier amplitude
+spectrum (FAS) of the record and of the noise, the latter being determined from the pre-event memory of the
+recording (Figure 2.4). The upper frequency limit, fupper, is determined as the highest frequency with a signal-tonoise ratio above 3, while the lower limit, flower, is determined by starting with the frequency at which the FAS
+deviates from the Brune spectrum (Brune, 1970) and is increased if the velocity and displacement time-histories
+obtained by integration after filtering of the accelerogram indicate that long-period noise is still present. The
+9
+
+usable range of the response spectra is then determined through a novel procedure developed as part of the
+ongoing Groningen work and described in detail by Edwards & Ntinalexis (2021). A record is rejected from the
+database if any of the following apply to either or both of the horizontal components:
+•
+•
+•
+
+The upper usable frequency, fupper ≤ 15 Hz
+The lower usable frequency, flower > 2 Hz
+The signal-to-noise ratio is < 3 over the interval between the upper and lower frequency limits
+
+The application of these criteria eliminates almost 48% of the total number of recordings, although these are
+predominantly from smaller magnitudes and longer distances (Figure 2.5).
+
+Figure 2.4. Lower: Groningen accelerogram and pre-event memory used to model noise; upper: FAS of
+accelerogram and noise plus the Brune spectrum (with an appropriate kappa filter) and the upper and lower
+frequency limits
+
+Three-quarters of the excluded records failed on the basis of either a low signal-to-noise ratio or insufficient
+usable bandwidth, with another fifth being removed because of an excessively low fupper; the remaining records
+failed on the basis of an excessively high flower.
+A final point worthy of note here is that no exclusion criterion was applied with regards to distance. The
+recordings that remain in the database after application of the signal-to-noise ratio criteria will tend to
+represent samples of the stronger shaking in each event, whereas weaker motions are more likely to be
+excluded. Consequently, the most distant records may be biased high with respect to the average level of
+motion generated at such distances by the earthquake. Therefore, it is not uncommon to apply a truncation to
+10
+
+the data beyond a certain distance at which such a bias may be influencing the data. In the case of the Groningen
+data, no such truncation was applied, in part because after the exclusions on the basis of signal-to-noise ratio
+criteria, very few records remain beyond 30 km. Moreover, any such screening of the data would require at
+least some subjective judgement to be made regarding the criterion for the removal of data, which would then
+be open to challenge. Instead, we have chosen to retain all of the data but we acknowledge that there might
+be a small upwards bias in the predictions at greater distances, and the influence of this bias may be important
+if the GMPEs are extrapolated far beyond the nominal range of applicability, which would be an epicentral
+distance of 30 km. However, for earthquakes of ML ≤ 3.6, ground-motion amplitudes at distances beyond 30
+km are unlikely to be of relevance to risk considerations.
+
+Figure 2.5. Magnitude-distance distribution of the 1,534 records rejected on the basis of signal-to-noise ratios
+and range of usable frequencies; an additional 81 records discarded due to instrument malfunction are not
+included in this plot.
+
+2.3. Database statistics
+The complete database consists of 1,787 recordings from 76 earthquakes with magnitudes ranging between ML
+1.8 and 3.6. The data distribution with respect to magnitude and distance is shown in Figure 2.6, from which it
+can be appreciated that the removal of many records on the basis of the quality criteria discussed in the
+previous section does not result in a poor or uneven distribution. The only notable limitation of the data is that
+for ML ≥ 3.5, there are only recordings from short (< 10 km) epicentral distance; this is result of the largest
+events occurring in the northwest part of the field, prior to the installation of the G-network, and hence being
+recorded only on the B-network, which does not cover a large area (Figure 2.3). Figure 2.7 shows the magnitudedistance distribution again but additionally indicating the networks from which the records were obtained.
+In Figure 2.7, some records are indicated by a black triangle, which means that the VS30 value for the recording
+station contributing that record has been obtained from the geologically-based, field-wide shear-wave velocity
+model of Kruiver et al. (2017), rather than from direct in situ measurements close to the instrument location. A
+few other recordings are indicated by green triangles and these correspond to GS stations that are outside the
+area mapped by Kruiver et al. (2017), for which no VS30 values are available at all.
+Figure 2.8 shows the PGV values, using the three different component definitions, plotted against distance. As
+in Figure 2.7, different symbols are used to indicate the network providing the records. Two important
+11
+
+observations can be made, the first being that the largest values of PGV have overwhelmingly been provided
+by the stations of the B-network. The second observation is that all of the recordings from stations without
+measured VS30 are at greater distances and generally of low amplitude; this is not fortuitous, however, but a
+direct result of the prioritisation of G-stations that we defined for the seismic CPT campaign by Fugro.
+The 1,787 recordings in the database come from 107 stations, only seven of which do not have a V S30 value,
+these being GS stations that lie outside of the area for which it is not possible to obtain a V S30 estimate. These
+stations only contribute 53 records (3%) to the database. For the 100 stations that do have VS30, 91 have values
+based on measured VS profiles; the remaining nine stations with only inferred values are all GS and G0 stations.
+These stations contribute 75 records to the database, which is just over 4% of the total. Figures 2.9 shows the
+distribution of both stations and records with respect to VS30.
+
+Figure 2.6. Magnitude-distance distribution of the final database
+
+Figure 2.7. Magnitude-distance distribution of the database indicating the network contributing the record:
+those outside the zonation area are some of the GS stations, those with inferred VS30 are the remaining GS
+stations and a few G0 stations
+
+12
+
+Figure 2.8. PGV values against epicentral distance with symbols indicating the type of recording station from
+which each record was obtained
+
+13
+
+Figure 2.9. Distributions of recording stations (lower) and records (upper) with respect to VS30; records from
+stations without VS30 values are excluded from these graphs
+
+14
+
+3. Regressions and New Models
+In this chapter, we present the regression analyses performed on the database described in the previous
+chapter. This starts with a description of the functional form and then presents two sets of regression results,
+one considering magnitude, distance and VS30, then one also incorporating the influence of the recording
+network.
+
+3.1. Functional form for GMPEs
+The basic functional form used for the equations is unchanged from previous versions of the PGV model:
+𝑉
+
+𝑆30
+ln(𝑃𝐺𝑉) = 𝑐1 + 𝑐2 𝑀 + 𝑔(𝑅) + 𝑐8 ln ( 200
+)
+
+(3.1)
+
+with PGV in cm/s, M being local magnitude ML, and the distance term, R, is an effective distance that accounts
+for magnitude-dependent near-source saturation effects, and VS30 is the harmonic average shear-wave velocity
+over the top 30 metres (in m/s).
+The distance R (in km) is a function of hypocentral distance, Rhyp (whereas previous GMPEs for PGV used Repi)
+and is defined as in Eq.(3.2). The reason for changing to hypocentral distance is that accurate focal depths are
+now available for many of the earthquakes (Spetzler & Dost, 2017) rather than the assumed default of 3 km,
+with values ranging from 2.45 to 3.3 km, reflecting the dome-like structure of the Rotliegend-Slochteren
+sandstone formation in which the gas reservoir is located.
+2
+𝑅 = ⁡ √𝑅ℎ𝑦𝑝
++ ℎ(𝑀)2
+
+(3.2)
+
+with the magnitude-dependent saturation term set equal to:
+ℎ(𝑀) = exp⁡(𝑐6 + 𝑐7 𝑀)
+
+(3.3)
+
+Note that the coefficient c6 is solved for in the regression analysis, while c7 is fixed to a constant value (1.1513)
+so that the saturation distance scales in proportion to the expected rupture area. The use of Rhyp rather than
+rupture distance, Rrup, is considered a perfectly acceptable choice since the rupture areas of events with even
+the largest magnitude is the database are likely to be small (on the order of 0.4 km2 for ML 3.6).
+The geometric spreading term is defined in terms of the effective distance, R, and is segmented over three
+separate intervals of distance, which have been inferred from finite difference wave propagation modelling and
+are also used in the GMM development:
+𝑔(𝑅) = ⁡ 𝑐3 ln⁡(𝑅)
+𝑅
+
+𝑔(𝑅) = ⁡ 𝑐3 ln(7) + ⁡ 𝑐4 ln ( 7 )
+12
+
+𝑅
+
+𝑔(𝑅) = ⁡ 𝑐3 ln(7) + ⁡ 𝑐4 ln ( 7 ) + ⁡ 𝑐5 ln (12)
+
+𝑅⁡ ≤ 7⁡𝑘𝑚
+
+(3.4a)
+
+7 < ⁡𝑅⁡ ≤ 12⁡𝑘𝑚
+
+(3.4b)
+
+𝑅 > 12⁡𝑘𝑚
+
+(3.4c)
+
+Since direct measurements of VS30 have now been obtained for the vast majority of the recording stations
+contributing to the ground-motion database, it was clearly appropriate to explore afresh the influence of this
+15
+
+parameter on the prediction of PGV in the Groningen field. The normalising value of 200 m/s in Eq.(3.1) was
+chosen on the basis of being the ‘average’ value for the risk study area. Figure 3.1 shows the median and mean
+VS30 values assigned to each of the zones defined for the specification of the amplification factors used in the
+GMM. The geometric mean of the mean values assigned to the 162 site response zones is 202.5 m/s and the
+geometric mean of their medians is 200.0 m/s, confirming that 200 m/s is a representative average value for
+the Groningen risk study area. The histograms in Figure 2.9 convey the impression that the representative value
+might perhaps be a little lower than 200 m/s but those values correspond to the station locations (which are
+concentrated more in the northern half of the field, where softer soils are encountered) and it is more
+appropriate to use a value that represents the average of the entire field rather than the average of the
+recording networks. At the same time, it should be noted that the selected value exerts no influence on
+predictions obtained from the model: using different normalising VS30 values would simply change the constant
+of the equation.
+
+Figure 3.1. Map of the study area showing the median (left) and mean (right) VS30 for each site response zone.
+
+The total standard deviation, σ, is decomposed into between-event (𝜏), site-to-site (𝜙𝑆2𝑆 ), and within-event
+(𝜙𝑠𝑠 ) standard deviations, all of which are related by the following expression (e.g., Al Atik et al., 2010):
+2
+2
+𝜎 = ⁡ √𝜏 2 + 𝜙𝑆2𝑆
++ 𝜙𝑠𝑠
+
+16
+
+(3.5)
+
+The estimates of these variance components, as well as the coefficients of the GMPEs are also influenced by
+considering the uncertainty in magnitude for each earthquake. This uncertainty was not considered in the
+previous PGV models and explains why the estimates of the between-event standard deviation are slightly
+lower than values reported previously. The regressions are performed for PGV using all three horizontal
+component definitions presented and discussed in Chapter 2. Another issue that has become relevant to the
+derivation of the predictive models for ground motions is the apparently systematic variations in average
+amplitudes that are recorded by the different networks. This issue is explored in the residuals of the model
+(Section 3.2) and explicitly accounted for in the derivation of an alternative model described in Section 3.3.
+
+3.2. Results of regression analyses
+Mixed effects regression analyses were performed on the full dataset for the three different definitions of PGV,
+yielding the coefficients presented in Table 3.1. The variance components are presented in Table 3.2. Figure 3.1
+shows the residuals decomposed into event terms (plotted against magnitude) and within-event residuals
+(plotted against hypocentral distance); the lack of any trends in the residuals confirm the suitability of the
+functional form and the good fit of the model to the data. The good fit of the model is also confirmed by the
+station terms plotted in Figure 3.2 against VS30.
+
+Table 3.1. Coefficients of Eqs.(3.1) to (3.4) for the three PGV definitions
+PGV
+PGVGM
+PGVlarger
+PGVMaxRot
+
+𝑐1
+-3.9045
+-3.3996
+-3.2738
+
+𝑐2
+2.3004
+2.3258
+2.3343
+
+𝑐3
+-2.6496
+-2.8522
+-2.8857
+
+𝑐4
+-1.0908
+-1.0151
+-1.006
+
+𝑐5
+-2.0089
+-2.1002
+-2.1016
+
+𝑐6
+-3.3276
+-3.4407
+-3.394
+
+𝑐7
+1.1513
+1.1513
+1.1513
+
+𝑐8
+-0.2977
+-0.3295
+-0.3354
+
+Table 3.2. Standard deviations of three PGV predictions
+PGV
+PGVGM
+PGVlarger
+PGVMaxRot
+
+𝜏
+0.2488
+0.2448
+0.247
+
+𝜙𝑆2𝑆
+0.242
+0.2406
+0.2442
+
+𝜙𝑠𝑠
+0.416
+0.4569
+0.453
+
+𝜎
+0.5418
+0.5715
+0.5708
+
+Figure 3.3 shows median predictions of PGVMaxRot for three magnitudes against distance, for three different
+values of VS30, with softer sites exhibiting higher amplitudes of motion, as would be expected. The influence of
+VS30 is not particularly pronounced, however, over the range of values for this parameter encountered in the
+Groningen field. However, this is not inconsistent with findings in other projects—including NGA-Sub (Parker &
+Stewart, 2021) and NGA-East (Parker et al., 2019)—which find a flattening off the relative amplification as VS30
+values become very low (< ~300 m/s). The influence of VS30 is, however, now found to be much stronger than
+was the case for the first PGV model derived in 2016, which may in part be the result of now using only directly
+measured values of this parameter.
+As mentioned previously, in recent years it has become apparent that there may be some systematic differences
+between the B-network and G-network recordings. In order to explore this issue, the within-event residuals,
+from a standard Abrahamson & Youngs (1992) random effects regression analysis were grouped by recording
+network, as shown in Figure 3.4 (upper frame). For the residuals of recordings from each of the networks, the
+box indicates the range from the 25-percentile to the 75-percentile, while the line in the middle of the box
+indicates the median residual; the whiskers indicate the range from the minimum to maximum value. There is
+17
+
+a clear tendency towards lower PGV values—as revealed by the negative median residual—from the B_new
+network. The lower frame shows the residuals obtained from regressions also considering random effects for
+the station terms found as part of the mixed effects regression, which confirms that the offset of the B_new
+residuals is a stations and as well as random effects for event. This observation prompted additional regressions
+with a functional form including a term for the contributing network, as described in the next section.
+
+Figure 3.1. Between-event and within-event residuals with respect to the models defined by Eqs.(3.1)-(3.4)
+and Table 3.1 for PGVMaxRot (upper), PGVlarger (middle) and PGVGM (lower); the dashed lines show the
+corresponding standard deviations from Table 3.2. The data points in the right-hand frames are not simple
+within-event residuals but rather event and site corrected residuals.
+18
+
+Figure 3.2. Station terms for the three component definitions plotted against VS30. Red symbols are mean
+residuals in different VS30 bins, with the lines indicating their standard errors.
+
+Figure 3.3. Predicted median values of PGVMaxRot as a fuction of ML, Rhyp and VS30.
+
+19
+
+Figure 3.4. Within-event residuals from standard random effects regression (upper) and from regressions also
+considering random effects for stations (lower) grouped by recording network and instrument type.
+
+3.3. Regressions accounting for instrument-station type
+In order to include the effect of the recording networks, the functional form presented in Eq.(3.1) is modified
+by the addition of another term:
+𝑉
+
+𝑆30
+ln(𝑃𝐺𝑉) = 𝑐1 + 𝑐2 𝑀 + 𝑔(𝑅) + 𝑐8 𝑙𝑛 ( 200
+) + 𝑐9 𝐹𝑁𝐵
+
+(3.6)
+
+Where FNB is a dummy variable taking a value of 0 for B_new stations and 1 otherwise. The regressions are
+performed in the same way as for the original functional form, yield the coefficients and standard deviations
+presented in Tables 3.3 and 3.4. Figure 3.5 shows the between-event residuals against magnitude and the
+within-event residuals versus distance while Figure 3.6 shows station terms plotted against VS30. The patterns
+in these plots once again confirm that the equations provide a good fit to the data.
+
+Table 3.3. Coefficients of Eqs.(3.6) and (3.2) to (3.4) for the three PGV definitions
+PGV
+PGVGM
+PGVlarger
+PGVMaxRot
+
+𝑐1
+-4.0807
+-3.584
+-3.4422
+
+𝑐2
+2.2934
+2.3227
+2.323
+
+𝑐3
+-2.6534
+-2.8553
+-2.8881
+
+𝑐4
+-1.1003
+-1.0282
+-1.0158
+
+𝑐5
+-2.0153
+-2.1085
+-2.107
+
+20
+
+𝑐6
+-3.3242
+-3.4319
+-3.4029
+
+𝑐7
+1.1513
+1.1513
+1.1513
+
+𝑐8
+-0.3118
+-0.3344
+-0.3375
+
+𝑐9
+0.2551
+0.2581
+0.2564
+
+Figure 3.5. Between-event and within-event residuals with respect to the models defined by Eqs.(3.6) and
+(3.2)-(3.4) and Table 3.3 for PGVMaxRot (upper), PGVlarger (middle) and PGVGM (lower); the dashed lines show the
+corresponding standard deviations from Table 3.4. As in Figure 3.1, the data points in the right-hand frames
+are not simple within-event residuals but rather event and site corrected residuals.
+
+21
+
+Table 3.4. Standard deviations of three PGV predictions including the FNB term
+PGV
+PGVGM
+PGVlarger
+PGVMaxRot
+
+𝜏
+0.2509
+0.2487
+0.2521
+
+𝜙𝑆2𝑆
+0.2177
+0.2165
+0.2208
+
+𝜙𝑠𝑠
+0.416
+0.4567
+0.453
+
+𝜎
+0.5324
+0.5634
+0.5635
+
+Figure 3.6. Station terms for the three component definitions plotted against VS30. Red symbols are mean
+residuals in different VS30 bins, with the lines indicating their standard errors.
+
+Figure 3.7 compares the predictions from this model, with FNB set to 0 and 1, with the network-independent
+model presented in the previous section. As would be expected, the network-independent model predicts
+median PGV values that always lie between those corresponding to the predictions for B_new stations and for
+all other stations, although it is interesting to note that the network-independent predictions are very close to
+those for all stations other than those of the B_new network.
+The question of the apparently systematic differences between the recordings from the different networks—
+including between the B_new and B_old, which are housed in the same buildings—warrants some discussion.
+During the development of the GMM for Groningen it has been noted that the response spectra of recordings
+from B-network stations tend, on average, to be lower than those of G-network recordings at short periods.
+The effect is not always present and is not easy to isolate since there are no pairs of stations from the two
+networks that are co-located, with separation distances usually on the order of at least 1 km; response spectra
+of recordings from the closest station pair (BOWW and G190) do not show any systematic differences. In the
+work undertaken by the KEM research projects—funded by the Dutch Ministry of Economic Affairs and directed
+by SodM—the decision was taken to simply eliminate all recordings from the B-network recordings. As can be
+readily appreciated from Figure 2.8, this would mean removing both the strongest recordings from the database
+and the majority of the recordings obtained at short epicentral distances. As Figure 3.8 makes clear, removal of
+the B_new stations would also impoverish the database severely.
+In passing, it is worth noting that the cause of the apparent high-frequency suppression at B-stations is also not
+clear. Work undertaken as part of the KEM projects concluded that it was the result of soil-structure interaction
+(SSI) effects, but the analyses undertaken to support the assumption made by the KEM researchers regarding
+SSI being the cause were very crude (Witteveen+Bos, 2019). Work performed by the NAM hazard and risk
+modelling team, using advanced SSI analyses, demonstrated robustly that SSI effects do not explain any
+differences between B-networks (not including those with basements) and G-network recordings in the shortperiod range (Cavalieri et al., 2021). The same study showed that the most likely explanation is the presence of
+a layer of improved soil below the buildings housing the stations of the B-network, which are commonly created
+22
+
+by pre-loading the soil with a layer of compacted sand prior to construction. No systematic correction for this
+effect can be made, however, since no information is available regarding the presence or absence of such soil
+layers at all the B-network stations. At the same time, it is noted that there are clear SSI effects at three of the
+B-network stations where the buildings include deep basements (BUHZ, BWIN and BZN1) but corrections for
+the embedment effect at these stations are applied to all the recordings following the procedures
+recommended in NIST (2012).
+
+Figure 3.7. Comparison of median predictions for VS30 = 200 m/s for different combinations of magnitude and
+distance, using the network-independent model (ESV) from Section 3.2 and the network-dependent (ESVI)
+model with the parameter FNB set to 0 (B_new only) and 1 (all stations except B_new).
+
+This immediately raises the question of why there should be a difference between the B_old and B_new
+recordings in terms of their amplitudes and residuals, given that they correspond to instruments installed in the
+same buildings. The possible explanation might be as follows: there is a systematic average effect of B-network
+records being lower at short periods—and note that for the Groningen data, PGV correlates well with spectral
+accelerations at periods in the range of 0.2-0.3 seconds (Bommer et al., 2017c)—than those from the free-field
+23
+
+stations of the G-network, even if not manifested at all of the B-stations. The recordings from B_old
+instruments, which operated on a triggering basis, were generally selected by KNMI for processing and
+distribution and this manual process would naturally have favoured the stronger recordings and lower
+amplitude motions will have been excluded. In this regard, it may be noted that analyses by the GMM team
+(and subsequently by the KEM researchers) alluded to the attenuating effect at the B-network stations being a
+function of amplitude and manifesting most consistently for lower levels of motion, although it should be clearly
+noted that no physical explanation for this observation has been put forward. For the more recent B_new
+recordings, it is likely that more weak motions were retained and included in the database, especially since the
+upgraded instruments displayed much lower noise levels (Figure 3.9). Consequently, an average effect of highfrequency suppression at the B-network stations may be genuine but it could have been largely removed from
+the B_old recordings as a result of data selection procedures.
+
+Figure 3.8. Recorded PGV values from each instrument group plotted against distance.
+
+The approach that has been adopted herein is not to eliminate the recordings from any network, since
+collectively they provide excellent constraint on the dependence of PGV on magnitude, distance and VS30. The
+models provided allow for ignoring differences in station effects or else making predictions for the conditions
+corresponding to one or other of the network groupings. These options are discussed further in Section 5.
+
+24
+
+Figure 3.9. Noise spectra determined from pre-event memory of recordings from a B_old (WIN) station and its
+upgraded B_new successor (BWIN; Ntinalexis et al., 2019)
+
+25
+
+4. Comparison with Previous PGV Models
+In this chapter we briefly compare the latest GMPEs for PGV with those from 2019 and 2017; we exclude the
+2016 equations from these comparisons since they are not used in any applications, whereas the 2017 GMPEs
+are being used in the assessment of earthquake damage claims in Groningen. We first compare the median
+predictions and then discuss differences in the aleatory variability.
+
+4.1. Comparison of median predictions
+Figure 4.1 compares median PGV values against distance for three magnitudes using both versions of the 2021
+model with VS30 set to the fieldwide average of 200 m/s and the GMPEs from 2017 and 2019. These comparisons
+use epicentral distance, since this was the distance metric used in the earlier models, assuming a focal depth of
+3 km for the new models.
+
+Figure 4.1. Comparison of median PGV predictions from the new GMPEs with VS30 set to 200 m/s, with the
+2017 and 2019 GMPEs for different magnitude-distance combinations; a focal depth of 3 km is assumed for
+the 2021 GMPEs.
+26
+
+The segmented nature of the geometric spreading is more pronounced in the new models than in the previous
+PGV GMPEs, with a stronger reduction of the decay rate in the intermediate distance range and more rapid
+attenuation thereafter. As was noted earlier, the far-field decay could have been stronger yet if a truncation
+were applied to the dataset to remove potential bias due to only stronger recordings remaining in the dataset
+for distances beyond 25-30 km.
+The largest differences between the old and new models are observed at short distances and for the lower end
+of the magnitude range, which is primarily a result of including in the new regressions derivation of a nearsource distance saturation term rather than simply adopting the same term that has been used in all previous
+GMPEs. The c6 term in Eq.(3.3), which controls the absolute value of the saturation term, is well constrained by
+the data: the standard error for this coefficient is about 7% of the coefficient estimate. The c7 term, which
+controls the magnitude dependence of the saturation, is determined outside the regressions.
+In the middle and upper end of the magnitude range, the largest differences are observed at longer distances,
+with the new models tending to yield slightly lower predictions. At these magnitudes, the differences between
+the new network-independent predictions and the 2017 and 2019 are smaller than the differences between
+the new prediction for the B_new stations and for all other stations, which highlights the significance of this
+issue of differences in recordings from the different networks. The implications of these differences for the
+model application are discussed in Section 5.
+
+4.2. Comparison of aleatory variability
+The standard deviations from the different models are compared in Tables 4.1, 4.2 and 4.3 for the three
+component definitions.
+
+Table 4.1. Comparison of variability components (φ combines φS2S and φss) for different GMPEs for PGVGM
+Standard
+Deviation
+τ
+φ
+σ
+
+2017
+
+2019
+
+0.4226
+0.4607
+0.6252
+
+0.2513
+0.4821
+0.5436
+
+2021
+ESV
+0.2488
+0.4813
+0.5418
+
+2021
+ESVI
+0.2509
+0.4695
+0.5324
+
+Table 4.2. Comparison of variability components for different GMPEs for PGVLarger
+Standard
+Deviation
+τ
+φ
+σ
+
+2017
+
+2019
+
+0.428
+0.5167
+0.671
+
+0.2517
+0.5400
+0.5958
+
+2021
+ESV
+0.2448
+0.5164
+0.5715
+
+2021
+ESVI
+0.2487
+0.5054
+0.5634
+
+Table 4.3. Comparison of variability components for different GMPEs for PGVMaxRot
+Standard
+Deviation
+τ
+φ
+σ
+
+2017
+
+2019
+
+0.4264
+0.5115
+0.6659
+
+0.2524
+0.5361
+0.5926
+27
+
+2021
+ESV
+0.2470
+0.5146
+0.5708
+
+2021
+ESVI
+0.2521
+0.5039
+0.5635
+
+The largest change observed is the very large reduction in between-event variability between 2017 and 2019,
+the value associated with the earlier model clearly being inflated by the calibration error of the G-network
+accelerographs. The standard deviations associated with the 2021 models, particularly the ESVI model including
+the term for the contributing instrument-type, are slightly lower than those from 2019. In part this reduction is
+likely also to have been influenced by the improved site characterisation and also the incorporation of the
+magnitude uncertainty into the regressions, which was done for the first time in the derivation of the latest
+models.
+Figure 4.2 makes the same comparisons as in Figure 4.1, but at the 84-percentile level rather than the median
+level, thereby illustrating the influence of changes in the median predictions and the associated standard
+deviations. The patterns revealed are similar to those highlighted for the median comparisons, except that the
+new models tend to predict lower values than the 2017 model over much of the distance range, except for the
+lowest magnitude at which the 2017 model predicts lower values at distances beyond 2 km. However, the
+B_new model yield lower predictions than any of the other models for all magnitude-distance combinations.
+
+Figure 4.2. Comparison of 84-percentile PGV predictions from the new GMPEs with VS30 set to 200 m/s and
+the 2017 and 2019 GMPEs for different magnitude distance combinations; a focal depth of 3 km is assumed
+for the 2021 GMPEs.
+28
+
+5. Conclusions and Recommendations
+Using a revised functional form, which includes a new near-source distance saturation term derived together
+with the other model coefficients, new equations have been derived using an expanded ground-motion
+database, which has been processed using improved procedures and which now also includes measured VS30
+values for the vast majority of the recording stations. The new models can be used with confidence to predict
+motions from earthquakes of magnitude ML 1.8 to 3.6 at epicentral distances up to about 30 km; extrapolation
+to longer distances is possible, but predictions beyond 25-30 km may be slightly biased high and this bias will
+increase at greater distances.
+The new models reveal a clear dependence of PGV on VS30, which should therefore be accounted for when
+estimating PGV values. However, VS30 values are currently available only for the area that has been defined for
+the seismic hazard and risk modelling, which is defined by the limits of the gas field plus a 5 km buffer onshore,
+and PGV values need to be estimated beyond this boundary. To facilitate the model implementation, work has
+been undertaken by Deltares (under contract to NAM) to extend the area for which VS30 values are mapped
+using the GeoTop model. The new VS30 map, which extend as much as 20 km beyond the onshore boundary of
+the current field zonation, presents VS30 values assigned to postcode areas; the map is presented in the
+Appendix to this report. The models can also be implemented using the fieldwide average of 200 m/s for VS30
+but it needs to be recognised that this is likely to introduce some bias and in particular to slightly underestimate
+motions in the northern parts of the field where softer soils with lower VS30 values are encountered.
+The decision that needs to be made when implementing the PGV GMPEs is how to treat the different recording
+networks, since clearly different trends are now seen for the B_new station recordings, which are generally
+consistently lower. All options have been addressed in the model derivation, but we can offer some
+considerations regarding which might be most appropriate. The PGV GMPE is intended for estimation of the
+ground motions experienced by buildings during induced earthquakes. From this perspective, the most
+appropriate model might be one that predicts motions consistent with the B_new station recordings: i.e.,
+Eq.(3.6) with the FNB variable set to 0. However, it is not known at what proportion of buildings in the Groningen
+region do the effects of attenuated high-frequency motions manifest. The current hypothesis is that the effect
+is due to improved soil layers below the foundations but there are no data available to determine how pervasive
+this feature is among the entire building stock. Therefore, a reasonable and safely conservative approach is to
+use the model derived from all the available recordings, combining the free-field G-stations and the B-stations
+within buildings, namely Eq.(3.1). The implicit assumption in this choice is that collectively the recordings
+obtained from the stations of both networks approximate the distribution of buildings with and without the
+high-frequency attenuation effect.
+When the GMPE is being applied to a specific earthquake, the first step should be to calculate the event term,
+𝜂, which is the average offset of the recordings with respect to the median prediction for earthquakes of that
+magnitude, calculated using the equation of Abrahamson & Youngs (1992):
+
+𝜂 =⁡
+
+𝜏2 ∑𝑛
+𝑖=1(𝑌𝑖 −𝜇𝑖 )
+
+(5.1)
+
+𝑛𝜏2 +𝜙2
+
+where Yi is the natural logarithm of the recorded PGV value, n is the number of recordings and 𝜇𝑖 is the mean
+predicted ln(PGV) value for the magnitude-distance combination corresponding to the ith record. The median
+predicted values of PGV should then be adjusted by⁡𝑒 𝜂 and the ground-motion field calculated sampling only
+from the within-event variability, 𝜙. The calculation of the event terms could be further refined by also
+accounting for the station terms, many of which are now well constrained since several stations have
+contributed large numbers of recordings. Additionally, spatial correlation of ground motions (Stafford et al.,
+2019) could also be accounted for and the option therefore exists to generate ShakeMap-like predictions for
+the ground motions from any particular earthquake.
+29
+
+6. References
+Abrahamson, N.A. & R.R. Youngs (1992). A stable algorithm for regression analyses using the random effects
+model. Bulletin of the Seismological Society of America 82(1), 505-510.
+Al-Atik, L., N.A. Abrahamson, J.J. Bommer, F. Scherbaum, F. Cotton & N. Kuehn (2010). The variability of groundmotion prediction models and its components. Seismological Research Letters 81(5), 783-793.
+Baker, J.W. & C.A. Cornell (2006). Which spectral acceleration are you using? Earthquake Spectra 22(2), 293312.
+Beyer, K. & J.J. Bommer (2006). Relationships between median values and aleatory variabilities for different
+definitions of the horizontal component of motion. Bulletin of the Seismological Society of America
+94(4A), 1512-1522. Erratum: 2007, 97(5), 1769.
+Bommer, J.J. & J.E. Alarcón (2006). The prediction and use of peak ground velocity. Journal of Earthquake
+Engineering 10(1), 1-31.
+Bommer, J.J., B. Dost, B. Edwards, P.P. Kruiver, M. Ntinalexis, A. Rodriguez-Marek, P.J. Stafford & J. van Elk
+(2017c). Developing a model for the prediction of ground motions due to earthquakes in the Groningen
+gas field. Netherlands Journal of Geoscience 96(5), s203-s213.
+Bommer, J.J., B. Dost, B. Edwards, P.J. Stafford, J. van Elk, D. Doornhof & M. Ntinalexis (2016a). Developing an
+application-specific ground-motion model for induced seismicity. Bulletin of the Seismological Society of
+America 106(1), 158-173.
+Bommer, J.J., P.J. Stafford, B. Edwards, B. Dost, E. van Dedem, A. Rodriguez-Marek, P. Kruiver, J. van Elk, D.
+Doornhof & M. Ntinalexis (2017a). Framework for a ground-motion model for induced seismic hazard
+and risk analysis in the Groningen gas field, The Netherlands. Earthquake Spectra 33(2), 481-498.
+Bommer, J.J., P.J. Stafford & M. Ntinalexis (2016b). Empirical Ground-Motion Prediction Equations for Peak
+Ground Velocity from Small-Magnitude Earthquakes in the Groningen Field Using Multiple Definitions of
+the Horizontal Component of Motion. November 2016, 17 pp.
+Bommer, J.J., P.J. Stafford & M. Ntinalexis (2017b). Empirical Ground-Motion Prediction Equations for Peak
+Ground Velocity from Small-Magnitude Earthquakes in the Groningen Field Using Multiple Definitions of
+the Horizontal Component of Motion: Updated Model for Application to Smaller Earthquakes. November
+2017, 16 pp.
+Bommer, J.J., P.J. Stafford & M. Ntinalexis (2019). Updated Empirical GMPEs for PGV from Groningen
+Earthquakes. Rev 1, 4 March 2019, 15 pp.
+Bommer, J.J. & J. van Elk (2017). Comment on “The maximum possible and maximum expected earthquake
+magnitude for production-induced earthquakes at the gas field in Groningen, The Netherlands” by Gert
+Zöller and Matthias Holschneider. Bulletin of the Seismological Society of America 107(3), 1564-1567.
+Boore, D.M. (2010). Orientation-independent, nongeometric-mean measures of seismic intensity from two
+horizontal components of motion. Bulletin of the Seismological Society of America 100(4), 1830-1835.
+Brune, J.N. (1970). Tectonic stress and the spectra of seismic shear waves from earthquakes. Journal of
+Geophysical Research 75(26), 4997-5009. Correction (1971), 76(20), 5002.
+Cavalieri, F., R. Pinho & A.A. Correia (2021). Variations between foundation-level recordings and free-field
+earthquake ground motions: numerical study at soft-soil sites. Soil Dynamics & Earthquake Engineering
+141, 106511, 20 pp.
+Crowley, H., B. Polidoro, R. Pinho & J. van Elk, J. (2017). Framework for developing fragility and consequence
+models for local personal risk. Earthquake Spectra 33(4), 1325-1345.
+Crowley, H., R. Pinho, J. van Elk & J. Uilenreef (2019). Probabilistic damage assessment of buildings due to
+induced seismicity. Bulletin of Earthquake Engineering 17(8), 4495-4516.
+Dost, B., B. Edwards & J.J. Bommer (2018). The relationship between M and ML – a review and application to
+induced seismicity in the Groningen gas field, the Netherlands. Seismological Research Letters 89(3),
+1062-1074.
+Dost, B., B. Edwards & J.J. Bommer (2019). Erratrum: The relationship between M and ML – a review and
+application to induced seismicity in the Groningen gas field, the Netherlands. Seismological Research
+Letters 90(4), 1660-1662.
+Dost, B., E. Ruigrok & J. Spetzler (2017). Development of seismicity and probabilistic hazard assessment for the
+Groningen gas field. Netherlands Journal of Geosciences 96(5), s235-s245.
+30
+
+Edwards, B. & M. Ntinalexis (2021). Usable bandwidth of weak-motion data: application to induced seismicity
+in the Groningen Gas Field, the Netherlands. Journal of Seismology, doi: 10.1007/s10950-021-10010-7.
+Kruiver, P. P., E. van Dedem, E. Romijn, G. de Lange, M. Korff, J. Stafleu, J.L. Gunnink., A. Rodriguez-Marek, J.J.
+Bommer, JJ. van Elk & D. Doornhof (2017). An integrated shear-wave velocity model for the Groningen
+gas field, The Netherlands. Bulletin of Earthquake Engineering 15(9), 3555-3580.
+NIST (2012). Soil-Structure Interaction for Building Structures. Report NIST GCR 12-917-21, National Institute of
+Standards and Technology, US Department of Commerce, 292 pp.
+Noorlandt, R.P., P.P. Kruiver, M.P.E. de Kleine, M. Karaoulis, G. de Lange, A. Di Matteo, J. von Ketelhodt, E.
+Ruigrok, B. Edwards, A. Rodriguez-Marek, J.J. Bommer, J. van Elk & D. Doornhof (2018). Characterisation
+of ground-motion recording stations in the Groningen gas field. Journal of Seismology 22(3), 605-623.
+Ntinalexis, M., J.J. Bommer, E. Ruigrok, B. Edwards, R. Pinho, B. Dost, A.A. Correia, J. Uilenreef, P.J. Stafford & J.
+van Elk (2019). Ground-motion networks in the Groningen field: usability and consistency of surface
+recordings. Journal of Seismology 23(6), 1233-1253.
+Parker, G.A. & J.P. Stewart (2021). Ergodic site response model for subduction zone regions. Earthquake
+Spectra, in revision following first review.
+Parker, G.A., J.P. Stewart, Y.M.A. Hashash, E.M. Rathje, K.W. Campbell & W.J. Silva (2019). Empirical linear
+seismic site amplification in Central and Eastern North America. Earthquake Spectra 35, 849-881.
+Rodriguez-Marek, A., P.P. Kruiver, P. Meijers, J.J. Bommer, B. Dost, J. van Elk & D. Doornhof (2017). A regional
+site-response model for the Groningen gas field. Bulletin of the Seismological Society of America 107(5),
+2067-2077.
+SBR (2002). Schade aan gebouwen meet-en beoordingsrichtlijn, Deel A. 38 pp.
+Spetzler, J. & B. Dost (2017). Hypocentre estimation of induced earthquakes in Groningen. Geophysical Journal
+International 209(1), 453-465.
+Stafford, P.J., B.D. Zurek, M. Ntinalexis & J.J. Bommer (2019). Extensions to the Groningen ground-motion model
+for seismic risk calculations: component-to-component variability and spatial correlation. Bulletin of
+Earthquake Engineering 17(8), 4417-4439.
+van Elk, J., S.J. Bourne, S.J. Oates, J.J. Bommer, R. Pinho & H. Crowley (2019). A probabilistic model to evaluate
+options for mitigating induced seismic risk. Earthquake Spectra 35(2), 537-564.
+Watson-Lamprey, J.A. & D.M. Boore (2007). Beyond SaGMRotI: Conversion to Saarb, SaSN, and SaMaxRot. Bulletin of
+the Seismological Society of America 97(5), 1511-1524.
+Witteveen+Bos (2019). Dynamic amplification effects for B-stations due to building response, Report
+113982/19-009.783, 12 June 2019.
+
+31
+
+APPENDIX
+Extended VS30 Map
+This Appendix presents an extended VS30 map covering the Groningen field and a large surrounding area within
+which there have been claims for damage. The maps present representative VS30 values assigned to each 4-digit
+postcode, and to facilitate implementation, the VS30 values corresponding to each postcode area are also
+tabulated.
+The map was produced by Edwin Obando-Hernández and Manos Pefkos at Deltares, with important inputs from
+Dr Pauline Kruiver, who is now at KNMI.
+Reference
+Deltares (2021). VS30 Mapping over the Groningen Gas Field and Surrounding Areas. 11203458-004, 7 October.
+
+32
+
+Postcode
+8401
+8407
+8408
+8409
+8411
+8412
+8428
+8431
+8432
+8433
+8434
+8435
+9123
+9124
+9131
+9132
+9133
+9134
+9135
+9136
+9137
+9142
+9166
+9201
+9202
+9203
+9204
+9205
+9206
+9207
+9211
+9218
+9221
+9222
+9223
+9231
+9233
+9241
+9243
+9244
+9246
+9247
+9248
+9249
+9258
+9261
+9281
+9283
+9284
+9285
+9286
+
+VS30 (m/s)
+307
+302
+301
+285
+279
+284
+264
+293
+292
+289
+285
+282
+195
+195
+209
+200
+189
+188
+186
+185
+174
+173
+225
+252
+240
+246
+252
+279
+263
+263
+273
+277
+296
+281
+289
+262
+267
+278
+291
+273
+263
+267
+285
+298
+258
+307
+267
+235
+241
+226
+247
+
+Postcode
+9287
+9288
+9289
+9291
+9292
+9293
+9294
+9295
+9296
+9297
+9298
+9301
+9302
+9304
+9305
+9306
+9307
+9311
+9312
+9313
+9314
+9315
+9321
+9331
+9333
+9334
+9335
+9336
+9337
+9341
+9342
+9343
+9351
+9354
+9355
+9356
+9359
+9361
+9362
+9363
+9364
+9365
+9366
+9367
+9402
+9403
+9404
+9406
+9407
+9408
+9409
+
+VS30 (m/s)
+252
+257
+268
+227
+201
+197
+232
+223
+244
+259
+242
+215
+215
+254
+248
+244
+266
+240
+218
+216
+225
+239
+240
+280
+277
+270
+286
+271
+285
+273
+291
+317
+233
+262
+212
+239
+202
+263
+258
+255
+235
+236
+237
+256
+228
+247
+272
+242
+216
+266
+268
+
+Postcode
+9421
+9451
+9458
+9459
+9461
+9463
+9464
+9465
+9466
+9467
+9468
+9469
+9471
+9472
+9473
+9474
+9475
+9479
+9481
+9482
+9483
+9484
+9485
+9486
+9487
+9488
+9489
+9491
+9492
+9493
+9494
+9495
+9496
+9497
+9501
+9502
+9503
+9511
+9512
+9514
+9515
+9541
+9545
+9566
+9585
+9591
+9601
+9602
+9603
+9605
+9606
+33
+
+VS30 (m/s)
+268
+271
+259
+262
+259
+253
+244
+244
+263
+234
+246
+252
+243
+231
+241
+240
+259
+251
+248
+254
+257
+244
+259
+245
+232
+244
+231
+263
+240
+262
+260
+254
+257
+262
+267
+249
+255
+263
+261
+258
+257
+251
+270
+235
+287
+250
+233
+237
+250
+253
+233
+
+Postcode
+9607
+9608
+9609
+9611
+9613
+9614
+9615
+9616
+9617
+9618
+9619
+9621
+9622
+9623
+9624
+9625
+9626
+9627
+9628
+9629
+9631
+9632
+9633
+9635
+9636
+9641
+9642
+9644
+9645
+9646
+9648
+9649
+9651
+9654
+9655
+9656
+9657
+9658
+9659
+9661
+9663
+9665
+9671
+9672
+9673
+9674
+9675
+9677
+9678
+9679
+9681
+
+VS30 (m/s)
+227
+223
+173
+254
+236
+244
+260
+243
+233
+249
+267
+250
+207
+203
+192
+192
+214
+238
+216
+199
+263
+272
+271
+207
+219
+248
+235
+269
+236
+253
+260
+250
+253
+246
+243
+237
+246
+251
+262
+238
+275
+253
+216
+198
+231
+251
+218
+230
+230
+217
+206
+
+Postcode
+9682
+9684
+9685
+9686
+9687
+9688
+9691
+9693
+9695
+9696
+9697
+9698
+9699
+9711
+9712
+9713
+9714
+9715
+9716
+9717
+9718
+9721
+9722
+9723
+9724
+9725
+9726
+9727
+9728
+9731
+9732
+9733
+9734
+9735
+9736
+9737
+9738
+9741
+9742
+9743
+9744
+9745
+9746
+9747
+9749
+9751
+9752
+
+VS30 (m/s)
+186
+182
+218
+200
+216
+200
+200
+222
+250
+230
+240
+270
+268
+212
+193
+185
+188
+178
+179
+201
+188
+219
+215
+199
+224
+222
+194
+204
+217
+182
+197
+202
+200
+189
+191
+177
+165
+189
+187
+186
+202
+203
+184
+182
+208
+218
+230
+
+Postcode
+9753
+9755
+9756
+9761
+9765
+9766
+9771
+9773
+9774
+9781
+9784
+9785
+9791
+9792
+9793
+9794
+9795
+9796
+9797
+9798
+9801
+9804
+9805
+9811
+9812
+9821
+9822
+9824
+9825
+9827
+9828
+9831
+9832
+9833
+9841
+9842
+9843
+9844
+9845
+9851
+9852
+9853
+9861
+9862
+9863
+9864
+9865
+
+VS30 (m/s)
+237
+213
+253
+247
+258
+254
+171
+173
+161
+178
+175
+192
+193
+187
+181
+181
+186
+197
+194
+194
+206
+208
+214
+183
+180
+231
+214
+231
+265
+205
+206
+180
+190
+174
+205
+200
+183
+185
+194
+202
+206
+204
+227
+247
+251
+251
+284
+
+Postcode
+9866
+9871
+9872
+9873
+9881
+9882
+9883
+9884
+9885
+9886
+9891
+9892
+9893
+9901
+9902
+9903
+9904
+9905
+9906
+9907
+9908
+9909
+9911
+9912
+9913
+9914
+9915
+9917
+9918
+9919
+9921
+9922
+9923
+9924
+9925
+9931
+9932
+9933
+9934
+9936
+9937
+9939
+9942
+9943
+9944
+9945
+9946
+
+34
+
+VS30 (m/s)
+202
+207
+226
+214
+180
+171
+167
+182
+175
+167
+169
+164
+158
+168
+170
+171
+168
+168
+166
+174
+185
+175
+165
+177
+173
+174
+189
+180
+182
+179
+179
+181
+180
+183
+184
+169
+167
+168
+165
+171
+195
+218
+177
+193
+183
+182
+180
+
+Postcode
+9947
+9948
+9949
+9951
+9953
+9954
+9955
+9956
+9957
+9959
+9961
+9962
+9963
+9964
+9965
+9966
+9967
+9968
+9969
+9971
+9972
+9973
+9974
+9975
+9976
+9977
+9978
+9979
+9981
+9982
+9983
+9984
+9985
+9986
+9987
+9988
+9989
+9991
+9992
+9993
+9994
+9995
+9996
+9997
+9998
+9999
+
+VS30 (m/s)
+179
+165
+169
+177
+187
+179
+175
+171
+187
+186
+173
+165
+169
+176
+176
+165
+188
+191
+187
+173
+170
+167
+189
+182
+202
+182
+176
+184
+193
+186
+177
+178
+182
+183
+190
+176
+176
+178
+181
+169
+172
+165
+190
+187
+165
+185
+
+
