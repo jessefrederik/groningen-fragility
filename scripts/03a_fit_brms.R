@@ -124,7 +124,7 @@ print(summary(fit_A))
 
 # Check convergence
 cat("\n=== Convergence Diagnostics ===\n")
-rhat_vals <- rhat(fit_A)
+rhat_vals <- brms::rhat(fit_A)
 cat("Max Rhat:", max(rhat_vals, na.rm = TRUE), "\n")
 cat("Any Rhat > 1.01:", any(rhat_vals > 1.01, na.rm = TRUE), "\n")
 
