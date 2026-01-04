@@ -1,5 +1,5 @@
 # =============================================================================
-# 04_fit_brms.R
+# 03a_fit_brms.R
 #
 # Fit hierarchical Bayesian hurdle-Gamma model using brms.
 # Includes monotonic effects for PGV and partial pooling across records.

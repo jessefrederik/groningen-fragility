@@ -1,0 +1,216 @@
+// generated with brms 2.23.0
+functions {
+  /* hurdle gamma log-PDF of a single response
+   * Args:
+   *   y: the response value
+   *   alpha: shape parameter of the gamma distribution
+   *   beta: rate parameter of the gamma distribution
+   *   hu: hurdle probability
+   * Returns:
+   *   a scalar to be added to the log posterior
+   */
+  real hurdle_gamma_lpdf(real y, real alpha, real beta, real hu) {
+    if (y == 0) {
+      return bernoulli_lpmf(1 | hu);
+    } else {
+      return bernoulli_lpmf(0 | hu) +
+             gamma_lpdf(y | alpha, beta);
+    }
+  }
+  /* hurdle gamma log-PDF of a single response
+   * logit parameterization of the hurdle part
+   * Args:
+   *   y: the response value
+   *   alpha: shape parameter of the gamma distribution
+   *   beta: rate parameter of the gamma distribution
+   *   hu: linear predictor for the hurdle part
+   * Returns:
+   *   a scalar to be added to the log posterior
+   */
+  real hurdle_gamma_logit_lpdf(real y, real alpha, real beta, real hu) {
+    if (y == 0) {
+      return bernoulli_logit_lpmf(1 | hu);
+    } else {
+      return bernoulli_logit_lpmf(0 | hu) +
+             gamma_lpdf(y | alpha, beta);
+    }
+  }
+  // hurdle gamma log-CCDF and log-CDF functions
+  real hurdle_gamma_lccdf(real y, real alpha, real beta, real hu) {
+    return bernoulli_lpmf(0 | hu) + gamma_lccdf(y | alpha, beta);
+  }
+  real hurdle_gamma_lcdf(real y, real alpha, real beta, real hu) {
+    return log1m_exp(hurdle_gamma_lccdf(y | alpha, beta, hu));
+  }
+
+  /* compute monotonic effects
+   * Args:
+   *   scale: a simplex parameter
+   *   i: index to sum over the simplex
+   * Returns:
+   *   a scalar between 0 and rows(scale)
+   */
+  real mo(vector scale, int i) {
+    if (i == 0) {
+      return 0;
+    } else {
+      return rows(scale) * sum(scale[1:i]);
+    }
+  }
+
+}
+data {
+  int<lower=1> N;  // total number of observations
+  vector[N] Y;  // response variable
+  int<lower=1> K;  // number of population-level effects
+  matrix[N, K] X;  // population-level design matrix
+  int<lower=1> Kc;  // number of population-level effects after centering
+  int<lower=1> Ksp;  // number of special effects terms
+  int<lower=1> Imo;  // number of monotonic variables
+  array[Imo] int<lower=1> Jmo;  // length of simplexes
+  array[N] int Xmo_1;  // monotonic variable
+  vector[Jmo[1]] con_simo_1;  // prior concentration of monotonic simplex
+  array[N] int Xmo_2;  // monotonic variable
+  vector[Jmo[2]] con_simo_2;  // prior concentration of monotonic simplex
+  array[N] int Xmo_3;  // monotonic variable
+  vector[Jmo[3]] con_simo_3;  // prior concentration of monotonic simplex
+  int<lower=1> K_hu;  // number of population-level effects
+  matrix[N, K_hu] X_hu;  // population-level design matrix
+  int<lower=1> Kc_hu;  // number of population-level effects after centering
+  int<lower=1> Ksp_hu;  // number of special effects terms
+  int<lower=1> Imo_hu;  // number of monotonic variables
+  array[Imo_hu] int<lower=1> Jmo_hu;  // length of simplexes
+  array[N] int Xmo_hu_1;  // monotonic variable
+  vector[Jmo_hu[1]] con_simo_hu_1;  // prior concentration of monotonic simplex
+  array[N] int Xmo_hu_2;  // monotonic variable
+  vector[Jmo_hu[2]] con_simo_hu_2;  // prior concentration of monotonic simplex
+  array[N] int Xmo_hu_3;  // monotonic variable
+  vector[Jmo_hu[3]] con_simo_hu_3;  // prior concentration of monotonic simplex
+  // data for group-level effects of ID 1
+  int<lower=1> N_1;  // number of grouping levels
+  int<lower=1> M_1;  // number of coefficients per level
+  array[N] int<lower=1> J_1;  // grouping indicator per observation
+  // group-level predictor values
+  vector[N] Z_1_1;
+  // data for group-level effects of ID 2
+  int<lower=1> N_2;  // number of grouping levels
+  int<lower=1> M_2;  // number of coefficients per level
+  array[N] int<lower=1> J_2;  // grouping indicator per observation
+  // group-level predictor values
+  vector[N] Z_2_1;
+  // data for group-level effects of ID 3
+  int<lower=1> N_3;  // number of grouping levels
+  int<lower=1> M_3;  // number of coefficients per level
+  array[N] int<lower=1> J_3;  // grouping indicator per observation
+  // group-level predictor values
+  vector[N] Z_3_hu_1;
+  // data for group-level effects of ID 4
+  int<lower=1> N_4;  // number of grouping levels
+  int<lower=1> M_4;  // number of coefficients per level
+  array[N] int<lower=1> J_4;  // grouping indicator per observation
+  // group-level predictor values
+  vector[N] Z_4_hu_1;
+  int prior_only;  // should the likelihood be ignored?
+}
+transformed data {
+  matrix[N, Kc] Xc;  // centered version of X without an intercept
+  vector[Kc] means_X;  // column means of X before centering
+  matrix[N, Kc_hu] Xc_hu;  // centered version of X_hu without an intercept
+  vector[Kc_hu] means_X_hu;  // column means of X_hu before centering
+  for (i in 2:K) {
+    means_X[i - 1] = mean(X[, i]);
+    Xc[, i - 1] = X[, i] - means_X[i - 1];
+  }
+  for (i in 2:K_hu) {
+    means_X_hu[i - 1] = mean(X_hu[, i]);
+    Xc_hu[, i - 1] = X_hu[, i] - means_X_hu[i - 1];
+  }
+}
+parameters {
+  vector[Kc] b;  // regression coefficients
+  real Intercept;  // temporary intercept for centered predictors
+  simplex[Jmo[1]] simo_1;  // monotonic simplex
+  simplex[Jmo[2]] simo_2;  // monotonic simplex
+  simplex[Jmo[3]] simo_3;  // monotonic simplex
+  vector[Ksp] bsp;  // special effects coefficients
+  real<lower=0> shape;  // shape parameter
+  vector[Kc_hu] b_hu;  // regression coefficients
+  real Intercept_hu;  // temporary intercept for centered predictors
+  simplex[Jmo_hu[1]] simo_hu_1;  // monotonic simplex
+  simplex[Jmo_hu[2]] simo_hu_2;  // monotonic simplex
+  simplex[Jmo_hu[3]] simo_hu_3;  // monotonic simplex
+  vector[Ksp_hu] bsp_hu;  // special effects coefficients
+  vector<lower=0>[M_1] sd_1;  // group-level standard deviations
+  array[M_1] vector[N_1] z_1;  // standardized group-level effects
+  vector<lower=0>[M_2] sd_2;  // group-level standard deviations
+  array[M_2] vector[N_2] z_2;  // standardized group-level effects
+  vector<lower=0>[M_3] sd_3;  // group-level standard deviations
+  array[M_3] vector[N_3] z_3;  // standardized group-level effects
+  vector<lower=0>[M_4] sd_4;  // group-level standard deviations
+  array[M_4] vector[N_4] z_4;  // standardized group-level effects
+}
+transformed parameters {
+  vector[N_1] r_1_1;  // actual group-level effects
+  vector[N_2] r_2_1;  // actual group-level effects
+  vector[N_3] r_3_hu_1;  // actual group-level effects
+  vector[N_4] r_4_hu_1;  // actual group-level effects
+  // prior contributions to the log posterior
+  real lprior = 0;
+  r_1_1 = (sd_1[1] * (z_1[1]));
+  r_2_1 = (sd_2[1] * (z_2[1]));
+  r_3_hu_1 = (sd_3[1] * (z_3[1]));
+  r_4_hu_1 = (sd_4[1] * (z_4[1]));
+  lprior += normal_lpdf(b | 0, 2);
+  lprior += normal_lpdf(Intercept | 0, 2);
+  lprior += dirichlet_lpdf(simo_1 | con_simo_1);
+  lprior += dirichlet_lpdf(simo_2 | con_simo_2);
+  lprior += dirichlet_lpdf(simo_3 | con_simo_3);
+  lprior += normal_lpdf(bsp | 0, 2);
+  lprior += gamma_lpdf(shape | 2, 0.5);
+  lprior += normal_lpdf(Intercept_hu | 0, 2);
+  lprior += dirichlet_lpdf(simo_hu_1 | con_simo_hu_1);
+  lprior += dirichlet_lpdf(simo_hu_2 | con_simo_hu_2);
+  lprior += dirichlet_lpdf(simo_hu_3 | con_simo_hu_3);
+  lprior += exponential_lpdf(sd_1 | 2);
+  lprior += exponential_lpdf(sd_2 | 2);
+  lprior += student_t_lpdf(sd_3 | 3, 0, 2.5)
+    - 1 * student_t_lccdf(0 | 3, 0, 2.5);
+  lprior += student_t_lpdf(sd_4 | 3, 0, 2.5)
+    - 1 * student_t_lccdf(0 | 3, 0, 2.5);
+}
+model {
+  // likelihood including constants
+  if (!prior_only) {
+    // initialize linear predictor term
+    vector[N] mu = rep_vector(0.0, N);
+    // initialize linear predictor term
+    vector[N] hu = rep_vector(0.0, N);
+    mu += Intercept + Xc * b;
+    hu += Intercept_hu + Xc_hu * b_hu;
+    for (n in 1:N) {
+      // add more terms to the linear predictor
+      mu[n] += (bsp[1]) * mo(simo_1, Xmo_1[n]) + (bsp[2]) * mo(simo_2, Xmo_2[n]) + (bsp[3]) * mo(simo_3, Xmo_3[n]) + r_1_1[J_1[n]] * Z_1_1[n] + r_2_1[J_2[n]] * Z_2_1[n];
+    }
+    for (n in 1:N) {
+      // add more terms to the linear predictor
+      hu[n] += (bsp_hu[1]) * mo(simo_hu_1, Xmo_hu_1[n]) + (bsp_hu[2]) * mo(simo_hu_2, Xmo_hu_2[n]) + (bsp_hu[3]) * mo(simo_hu_3, Xmo_hu_3[n]) + r_3_hu_1[J_3[n]] * Z_3_hu_1[n] + r_4_hu_1[J_4[n]] * Z_4_hu_1[n];
+    }
+    mu = exp(mu);
+    for (n in 1:N) {
+      target += hurdle_gamma_logit_lpdf(Y[n] | shape, shape / mu[n], hu[n]);
+    }
+  }
+  // priors including constants
+  target += lprior;
+  target += std_normal_lpdf(z_1[1]);
+  target += std_normal_lpdf(z_2[1]);
+  target += std_normal_lpdf(z_3[1]);
+  target += std_normal_lpdf(z_4[1]);
+}
+generated quantities {
+  // actual population-level intercept
+  real b_Intercept = Intercept - dot_product(means_X, b);
+  // actual population-level intercept
+  real b_hu_Intercept = Intercept_hu - dot_product(means_X_hu, b_hu);
+}
+
