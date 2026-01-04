@@ -40,33 +40,66 @@ b_intercept <- post$b_Intercept
 b_initial_psi <- post$b_initial_psi_c
 bsp_pgv <- post$bsp_mopgv_ord
 bsp_n <- post$bsp_mon_ord
+bsp_material <- post$bsp_momaterial_ord
 shape <- post$shape
 
 hu_intercept <- post$b_hu_Intercept
 hu_initial_psi <- post$b_hu_initial_psi_c
 hu_bsp_pgv <- post$bsp_hu_mopgv_ord
 hu_bsp_n <- post$bsp_hu_mon_ord
+hu_bsp_material <- post$bsp_hu_momaterial_ord
+
+# Random effect SDs (for marginal predictions, sample from N(0, sd))
+sd_eq <- post$`sd_EarthquakeType__Intercept`
+sd_fs <- post$`sd_FacadeType:SoilProfile__Intercept`
+hu_sd_eq <- post$`sd_EarthquakeType__hu_Intercept`
+hu_sd_fs <- post$`sd_FacadeType:SoilProfile__hu_Intercept`
 
 # Simplex weights for monotonic effects (cumulative)
+# IMPORTANT: brms mo() function uses: rows(scale) * sum(scale[1:i])
+# So we need to multiply by the number of increments (K-1 for K levels)
+
 # PGV has 7 increments (8 levels - 1)
-pgv_simplex <- matrix(NA, n_post, 7)
-for (i in 1:7) {
+pgv_K <- 7  # number of increments
+pgv_simplex <- matrix(NA, n_post, pgv_K)
+for (i in 1:pgv_K) {
   pgv_simplex[, i] <- post[[paste0("simo_mopgv_ord1[", i, "]")]]
 }
-pgv_cumsum <- t(apply(pgv_simplex, 1, cumsum))  # Cumulative for each level
+pgv_cumsum <- pgv_K * t(apply(pgv_simplex, 1, cumsum))  # Scale by K!
 
-hu_pgv_simplex <- matrix(NA, n_post, 7)
-for (i in 1:7) {
+hu_pgv_simplex <- matrix(NA, n_post, pgv_K)
+for (i in 1:pgv_K) {
   hu_pgv_simplex[, i] <- post[[paste0("simo_hu_mopgv_ord1[", i, "]")]]
 }
-hu_pgv_cumsum <- t(apply(hu_pgv_simplex, 1, cumsum))
+hu_pgv_cumsum <- pgv_K * t(apply(hu_pgv_simplex, 1, cumsum))
 
-# N simplex (4 increments)
-n_simplex <- matrix(NA, n_post, 4)
-for (i in 1:4) {
+# N simplex (4 increments for 5 levels: 1,2,3,4,8)
+n_K <- 4
+n_simplex <- matrix(NA, n_post, n_K)
+for (i in 1:n_K) {
   n_simplex[, i] <- post[[paste0("simo_mon_ord1[", i, "]")]]
 }
-n_cumsum <- t(apply(n_simplex, 1, cumsum))
+n_cumsum <- n_K * t(apply(n_simplex, 1, cumsum))
+
+hu_n_simplex <- matrix(NA, n_post, n_K)
+for (i in 1:n_K) {
+  hu_n_simplex[, i] <- post[[paste0("simo_hu_mon_ord1[", i, "]")]]
+}
+hu_n_cumsum <- n_K * t(apply(hu_n_simplex, 1, cumsum))
+
+# Material simplex (2 increments for 3 levels)
+mat_K <- 2
+mat_simplex <- matrix(NA, n_post, mat_K)
+for (i in 1:mat_K) {
+  mat_simplex[, i] <- post[[paste0("simo_momaterial_ord1[", i, "]")]]
+}
+mat_cumsum <- mat_K * t(apply(mat_simplex, 1, cumsum))
+
+hu_mat_simplex <- matrix(NA, n_post, mat_K)
+for (i in 1:mat_K) {
+  hu_mat_simplex[, i] <- post[[paste0("simo_hu_momaterial_ord1[", i, "]")]]
+}
+hu_mat_cumsum <- mat_K * t(apply(hu_mat_simplex, 1, cumsum))
 
 cat("Posterior parameters extracted.\n")
 
@@ -83,9 +116,10 @@ pgv_to_idx <- function(pgv) {
 #' Fast damage prediction using pre-extracted posteriors
 #' @param pgv PGV value (scalar)
 #' @param initial_psi Initial damage (scalar)
+#' @param material_idx Material level (1=0.7, 2=1.0, 3=1.3). Default 2 (average).
 #' @param n_draws Number of posterior draws to use
 #' @return Vector of damage samples
-fast_predict_damage <- function(pgv, initial_psi, n_draws = 500) {
+fast_predict_damage <- function(pgv, initial_psi, material_idx = 2, n_draws = 500) {
   # Sample posterior indices
   idx <- sample(n_post, n_draws, replace = TRUE)
 
@@ -103,6 +137,22 @@ fast_predict_damage <- function(pgv, initial_psi, n_draws = 500) {
 
   # N effect (single event = level 1 = 0)
   n_effect <- rep(0, n_draws)
+  hu_n_effect <- rep(0, n_draws)
+
+  # Material effect (0 for level 1, cumsum for others)
+  if (material_idx == 1) {
+    mat_effect <- rep(0, n_draws)
+    hu_mat_effect <- rep(0, n_draws)
+  } else {
+    mat_effect <- mat_cumsum[idx, material_idx - 1]
+    hu_mat_effect <- hu_mat_cumsum[idx, material_idx - 1]
+  }
+
+  # Sample random effects from marginal N(0, sd)
+  r_eq <- rnorm(n_draws, 0, sd_eq[idx])
+  r_fs <- rnorm(n_draws, 0, sd_fs[idx])
+  hu_r_eq <- rnorm(n_draws, 0, hu_sd_eq[idx])
+  hu_r_fs <- rnorm(n_draws, 0, hu_sd_fs[idx])
 
   # Center initial_psi
   psi_c <- initial_psi - std_params$initial_psi_mean
@@ -111,13 +161,17 @@ fast_predict_damage <- function(pgv, initial_psi, n_draws = 500) {
   eta_mu <- b_intercept[idx] +
             bsp_pgv[idx] * pgv_effect +
             bsp_n[idx] * n_effect +
-            b_initial_psi[idx] * psi_c
+            bsp_material[idx] * mat_effect +
+            b_initial_psi[idx] * psi_c +
+            r_eq + r_fs
 
   # Linear predictor for hurdle (logit scale)
   eta_hu <- hu_intercept[idx] +
             hu_bsp_pgv[idx] * hu_pgv_effect +
-            hu_bsp_n[idx] * n_effect +
-            hu_initial_psi[idx] * psi_c
+            hu_bsp_n[idx] * hu_n_effect +
+            hu_bsp_material[idx] * hu_mat_effect +
+            hu_initial_psi[idx] * psi_c +
+            hu_r_eq + hu_r_fs
 
   # Transform
   mu <- exp(eta_mu)

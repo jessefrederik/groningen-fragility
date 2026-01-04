@@ -19,6 +19,7 @@ This project implements a hierarchical hurdle-Gamma model to estimate fragility 
 | Lognormal median | 72.9 mm/s |
 | Lognormal β | 1.11 |
 | Gamma shape | 1.68 |
+| Multi-event scaling | Sub-linear (16 events ≈ 4× damage) |
 
 ## Project Structure
 
@@ -35,6 +36,7 @@ This project implements a hierarchical hurdle-Gamma model to estimate fragility 
 │   ├── 07_building_mapping.R
 │   ├── 08_spatial_simulation_brms.R
 │   ├── 09_fragility_curves_brms.R
+│   ├── 10_multievent_fast.R    # Fast cumulative damage simulation
 │   └── helpers/
 │       └── brms_predict.R
 ├── outputs/
