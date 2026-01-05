@@ -109,11 +109,32 @@ h2 { color: ', groningen_colors$text_dark, '; font-family: sans-serif; }
 # LOAD DATA
 # =============================================================================
 
-# Load model results
+# Load Korswagen model results only
 model_data <- list(
-  additive = readRDS(here("outputs", "models", "spatial_damage_uncertainty_full.rds")),
-  daf = readRDS(here("outputs", "models", "spatial_damage_daf.rds"))
+  korswagen_daf = readRDS(here("outputs", "models", "korswagen_daf_results.rds")),
+  korswagen_naive = readRDS(here("outputs", "models", "korswagen_lognormal_results.rds"))
 )
+
+# Standardize column names (Korswagen uses psi_mean, app expects psi_virgin_mean)
+standardize_korswagen <- function(df) {
+  df |>
+    rename(
+      psi_virgin_mean = psi_mean,
+      psi_virgin_p10 = psi_p10,
+      psi_virgin_p50 = psi_p50,
+      psi_virgin_p90 = psi_p90,
+      psi_virgin_sd = psi_sd,
+      p_visible_virgin = p_visible,
+      p_moderate_virgin = p_moderate
+    ) |>
+    mutate(
+      psi_predamage_mean = psi_virgin_mean,
+      p_visible_predamage = p_visible_virgin
+    )
+}
+
+model_data$korswagen_daf <- standardize_korswagen(model_data$korswagen_daf)
+model_data$korswagen_naive <- standardize_korswagen(model_data$korswagen_naive)
 
 earthquakes <- readRDS(here("outputs", "models", "groningen_earthquakes.rds"))
 
@@ -136,8 +157,11 @@ compute_pc4_damage <- function(data) {
 # Load PC4 polygon boundaries
 pc4_polygons <- st_read(here("datafiles", "pc4_groningen.gpkg"), quiet = TRUE)
 
-# Pre-compute PC4 aggregates for all models
-pc4_damage_all <- lapply(model_data, compute_pc4_damage)
+# Pre-compute PC4 aggregates for both Korswagen models
+pc4_damage_all <- list(
+  korswagen_daf = compute_pc4_damage(model_data$korswagen_daf),
+  korswagen_naive = compute_pc4_damage(model_data$korswagen_naive)
+)
 
 # =============================================================================
 # LOAD DAMAGE CLAIMS DATA
@@ -175,8 +199,11 @@ create_map_data <- function(pc4_damage) {
     )
 }
 
-# Pre-compute map data for all models
-pc4_map_all <- lapply(pc4_damage_all, create_map_data)
+# Pre-compute map data for both Korswagen models
+pc4_map_all <- list(
+  korswagen_daf = create_map_data(pc4_damage_all$korswagen_daf),
+  korswagen_naive = create_map_data(pc4_damage_all$korswagen_naive)
+)
 
 # =============================================================================
 # UI
@@ -193,17 +220,17 @@ ui <- fluidPage(
 
       h4("Model Parameters"),
 
-      selectInput("model_select", "Accumulatiemodel:",
+      selectInput("model_select", "Model:",
         choices = c(
-          "Additive (naive Markov)" = "additive",
-          "Korswagen DAF (N-effect)" = "daf"
+          "Korswagen (DAF)" = "korswagen_daf",
+          "Korswagen (Naive – additive)" = "korswagen_naive"
         ),
-        selected = "daf"
+        selected = "korswagen_daf"
       ),
       helpText(
         style = "font-size: 11px; color: #666;",
-        HTML("<b>Additive:</b> State-dependent, elk event telt onafhankelijk<br>
-              <b>DAF:</b> History-aware met N-effect voor vergelijkbare events")
+        HTML("<b>DAF:</b> Alleen record-breaking events veroorzaken schade<br>
+              <b>Naive:</b> Elk event telt onafhankelijk (additief)")
       ),
 
       hr(),
@@ -291,8 +318,8 @@ ui <- fluidPage(
           "Model Vergelijking",
           value = "comparison",
 
-          h4("Vergelijking: Additive vs DAF"),
-          p("Alle 542.957 gebouwen, virgin walls scenario."),
+          h4("Vergelijking: DAF vs Naive"),
+          p("542.957 gebouwen, virgin walls scenario. Korswagen Table 10 lognormaal fragility curves."),
 
           fluidRow(
             column(12,
@@ -361,7 +388,7 @@ ui <- fluidPage(
         column(12,
           div(
             style = "margin-top: 20px; font-size: 12px; color: #666;",
-            p(em("brms hurdle-gamma model | Korswagen fragility curves | Bommer GMM"))
+            p(em("Korswagen Table 10 lognormaal fragility curves | Bommer GMM"))
           )
         )
       )
@@ -481,7 +508,10 @@ server <- function(input, output, session) {
     max_val <- map_max_val()
     pal <- get_color_pal(max_val)
 
-    model_label <- if (input$model_select == "daf") "DAF" else "Additive"
+    model_label <- switch(input$model_select,
+      "korswagen_daf" = "Korswagen (DAF)",
+      "korswagen_naive" = "Korswagen (Naive)"
+    )
 
     # Popup
     data_sf$popup <- sprintf(
@@ -530,7 +560,10 @@ server <- function(input, output, session) {
     cor_val <- cor(data$predicted_per_1000, data$claims_per_1000, use = "complete.obs")
     max_val <- max(c(data$claims_per_1000, data$predicted_per_1000), na.rm = TRUE)
 
-    model_label <- if (input$model_select == "daf") "DAF" else "Additive"
+    model_label <- switch(input$model_select,
+      "korswagen_daf" = "Korswagen (DAF)",
+      "korswagen_naive" = "Korswagen (Naive)"
+    )
 
     ggplot(data, aes(x = predicted_per_1000, y = claims_per_1000)) +
       geom_point(aes(size = n_buildings), alpha = 0.6, color = groningen_colors$claims) +
@@ -600,7 +633,10 @@ server <- function(input, output, session) {
     max_val <- quantile(data_sf$mean_psi, 0.95, na.rm = TRUE)
     pal <- colorNumeric(palette = "YlOrRd", domain = c(0, max_val), na.color = "#f0f0f0")
 
-    model_label <- if (input$model_select == "daf") "DAF" else "Additive"
+    model_label <- switch(input$model_select,
+      "korswagen_daf" = "Korswagen (DAF)",
+      "korswagen_naive" = "Korswagen (Naive)"
+    )
 
     data_sf$popup <- sprintf(
       "<strong>PC4: %s</strong><br/>
@@ -643,7 +679,10 @@ server <- function(input, output, session) {
     if (nrow(data) == 0) return(NULL)
 
     cor_val <- cor(data$mean_psi, data$eur_per_building, use = "complete.obs")
-    model_label <- if (input$model_select == "daf") "DAF" else "Additive"
+    model_label <- switch(input$model_select,
+      "korswagen_daf" = "Korswagen (DAF)",
+      "korswagen_naive" = "Korswagen (Naive)"
+    )
 
     ggplot(data, aes(x = mean_psi, y = eur_per_building)) +
       geom_point(aes(size = n_buildings), alpha = 0.6, color = groningen_colors$predicted) +
@@ -663,47 +702,50 @@ server <- function(input, output, session) {
   # --- MODEL COMPARISON ---
   output$model_comparison_table <- renderTable({
     tibble(
-      Model = c("Additive (naive Markov)", "DAF (Korswagen)"),
+      Model = c("Korswagen (DAF)", "Korswagen (Naive – additive)"),
       `Mean Psi` = c(
-        mean(model_data$additive$psi_virgin_mean),
-        mean(model_data$daf$psi_virgin_mean)
+        mean(model_data$korswagen_daf$psi_virgin_mean),
+        mean(model_data$korswagen_naive$psi_virgin_mean)
       ),
       `P(Visible)` = c(
-        mean(model_data$additive$p_visible_virgin),
-        mean(model_data$daf$p_visible_virgin)
+        mean(model_data$korswagen_daf$p_visible_virgin),
+        mean(model_data$korswagen_naive$p_visible_virgin)
       ),
       `P(Moderate)` = c(
-        mean(model_data$additive$p_moderate_virgin),
-        mean(model_data$daf$p_moderate_virgin)
+        mean(model_data$korswagen_daf$p_moderate_virgin),
+        mean(model_data$korswagen_naive$p_moderate_virgin)
       ),
-      `DAF/Additive` = c(
-        1.0,
-        mean(model_data$daf$psi_virgin_mean) / mean(model_data$additive$psi_virgin_mean)
+      `DAF/Naive Ratio` = c(
+        mean(model_data$korswagen_daf$psi_virgin_mean) / mean(model_data$korswagen_naive$psi_virgin_mean),
+        1.0
       )
     ) |>
       mutate(
         `Mean Psi` = round(`Mean Psi`, 4),
         `P(Visible)` = paste0(round(100 * `P(Visible)`, 2), "%"),
         `P(Moderate)` = paste0(round(100 * `P(Moderate)`, 2), "%"),
-        `DAF/Additive` = paste0(round(`DAF/Additive`, 2), "x")
+        `DAF/Naive Ratio` = paste0(round(`DAF/Naive Ratio`, 2), "x")
       )
   }, striped = TRUE, hover = TRUE, width = "100%")
 
   output$compare_histogram <- renderPlot({
     set.seed(42)
-    n_sample <- 30000
+    n_sample <- 20000
     plot_data <- bind_rows(
-      model_data$additive |> sample_n(n_sample) |> select(psi_virgin_mean) |> mutate(Model = "Additive"),
-      model_data$daf |> sample_n(n_sample) |> select(psi_virgin_mean) |> mutate(Model = "DAF")
+      model_data$korswagen_daf |> sample_n(n_sample) |> select(psi_virgin_mean) |> mutate(Model = "Korswagen (DAF)"),
+      model_data$korswagen_naive |> sample_n(n_sample) |> select(psi_virgin_mean) |> mutate(Model = "Korswagen (Naive)")
     ) |>
-      mutate(Model = factor(Model, levels = c("Additive", "DAF")))
+      mutate(Model = factor(Model, levels = c("Korswagen (DAF)", "Korswagen (Naive)")))
 
     ggplot(plot_data, aes(x = psi_virgin_mean, fill = Model)) +
-      geom_histogram(binwidth = 0.05, alpha = 0.6, position = "identity") +
+      geom_histogram(binwidth = 0.05, alpha = 0.5, position = "identity") +
       geom_vline(xintercept = 1, linetype = "dashed", color = "black") +
-      scale_fill_manual(values = c("Additive" = groningen_colors$claims, "DAF" = groningen_colors$predicted)) +
+      scale_fill_manual(values = c(
+        "Korswagen (DAF)" = groningen_colors$predicted,
+        "Korswagen (Naive)" = groningen_colors$accent
+      )) +
       labs(
-        title = "Verdeling Cumulatieve Schade",
+        title = "Verdeling Cumulatieve Schade: DAF vs Naive",
         x = "Cumulatieve Psi (virgin walls)",
         y = "Aantal gebouwen",
         caption = "Verticale lijn = zichtbare schade drempel (Psi = 1)"
@@ -714,52 +756,59 @@ server <- function(input, output, session) {
 
   output$compare_scatter <- renderPlot({
     # Merge model predictions at PC4 level
-    additive_pc4 <- pc4_damage_all$additive |> select(pc4, psi_additive = mean_psi, p_visible_additive = p_visible)
-    daf_pc4 <- pc4_damage_all$daf |> select(pc4, psi_daf = mean_psi, p_visible_daf = p_visible)
+    daf_pc4 <- pc4_damage_all$korswagen_daf |> select(pc4, psi_daf = mean_psi)
+    naive_pc4 <- pc4_damage_all$korswagen_naive |> select(pc4, psi_naive = mean_psi)
 
-    compare_data <- inner_join(additive_pc4, daf_pc4, by = "pc4")
+    compare_data <- daf_pc4 |>
+      inner_join(naive_pc4, by = "pc4")
 
-    cor_val <- cor(compare_data$psi_additive, compare_data$psi_daf, use = "complete.obs")
+    cor_val <- cor(compare_data$psi_daf, compare_data$psi_naive, use = "complete.obs")
 
-    ggplot(compare_data, aes(x = psi_additive, y = psi_daf)) +
-      geom_point(alpha = 0.5, color = groningen_colors$accent) +
+    ggplot(compare_data, aes(x = psi_naive, y = psi_daf)) +
+      geom_point(alpha = 0.5, color = groningen_colors$predicted) +
       geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = groningen_colors$text_dark) +
       labs(
-        title = "DAF vs Additive per PC4",
-        subtitle = sprintf("r = %.3f", cor_val),
-        x = "Additive Mean Psi",
-        y = "DAF Mean Psi"
+        title = "DAF vs Naive per PC4",
+        subtitle = sprintf("r = %.3f | DAF reduceert schade ~27%%", cor_val),
+        x = "Korswagen (Naive) Mean Psi",
+        y = "Korswagen (DAF) Mean Psi"
       ) +
       corriethema
   })
 
   output$correlation_summary <- renderPrint({
-    additive_map <- pc4_map_all$additive
-    daf_map <- pc4_map_all$daf
+    daf_map <- pc4_map_all$korswagen_daf
+    naive_map <- pc4_map_all$korswagen_naive
 
     cat("=== CORRELATIE MET CLAIMS ===\n\n")
 
-    # Additive
-    cor_add_claims <- cor(additive_map$predicted_per_1000, additive_map$claims_per_1000, use = "complete.obs")
-    cor_add_eur <- cor(additive_map$mean_psi, additive_map$eur_per_building, use = "complete.obs")
-
-    cat("ADDITIVE MODEL:\n")
-    cat("  P(visible) vs claims/1000: r =", round(cor_add_claims, 3), "\n")
-    cat("  Mean Psi vs EUR/gebouw:    r =", round(cor_add_eur, 3), "\n\n")
-
-    # DAF
+    # Korswagen DAF
     cor_daf_claims <- cor(daf_map$predicted_per_1000, daf_map$claims_per_1000, use = "complete.obs")
     cor_daf_eur <- cor(daf_map$mean_psi, daf_map$eur_per_building, use = "complete.obs")
 
-    cat("DAF MODEL:\n")
+    cat("KORSWAGEN (DAF):\n")
     cat("  P(visible) vs claims/1000: r =", round(cor_daf_claims, 3), "\n")
     cat("  Mean Psi vs EUR/gebouw:    r =", round(cor_daf_eur, 3), "\n\n")
 
+    # Korswagen Naive
+    cor_naive_claims <- cor(naive_map$predicted_per_1000, naive_map$claims_per_1000, use = "complete.obs")
+    cor_naive_eur <- cor(naive_map$mean_psi, naive_map$eur_per_building, use = "complete.obs")
+
+    cat("KORSWAGEN (NAIVE):\n")
+    cat("  P(visible) vs claims/1000: r =", round(cor_naive_claims, 3), "\n")
+    cat("  Mean Psi vs EUR/gebouw:    r =", round(cor_naive_eur, 3), "\n\n")
+
     # Model comparison
-    cat("=== MODEL VERGELIJKING ===\n\n")
-    cat("Mean Psi (Additive):  ", round(mean(model_data$additive$psi_virgin_mean), 4), "\n")
-    cat("Mean Psi (DAF):       ", round(mean(model_data$daf$psi_virgin_mean), 4), "\n")
-    cat("DAF/Additive ratio:   ", round(mean(model_data$daf$psi_virgin_mean) / mean(model_data$additive$psi_virgin_mean), 2), "x\n")
+    cat("=== MODEL SAMENVATTING ===\n\n")
+    cat("Mean Psi:\n")
+    cat("  Korswagen (DAF):    ", round(mean(model_data$korswagen_daf$psi_virgin_mean), 4), "\n")
+    cat("  Korswagen (Naive):  ", round(mean(model_data$korswagen_naive$psi_virgin_mean), 4), "\n\n")
+
+    cat("DAF/Naive ratio:      ", round(mean(model_data$korswagen_daf$psi_virgin_mean) / mean(model_data$korswagen_naive$psi_virgin_mean), 2), "x\n\n")
+
+    cat("=== DAF INSIGHT ===\n")
+    cat("Record-breaking events (cause damage): ~0.46/building\n")
+    cat("Similar events (attenuated to zero):   ~0.60/building\n")
   })
 
   # --- EARTHQUAKES ---
